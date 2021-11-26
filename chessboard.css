@@ -1,0 +1,91 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+:root{
+    --width: 500px;
+    --height: 100px;
+}
+body {
+    background-color: teal;
+    font-size: 20px;
+}
+h1{
+    font-size: 2em;
+    background-color: grey;
+    width: 50%;
+    display: flex;
+    align-content: center;
+    color:black;
+    box-shadow: 10px 5px 10px black;
+}
+input{
+    background-color: white;
+    height: 30px;
+    border-radius: 5px;
+}
+button{
+    height: 30px;
+    width: 100px;
+    background-color:grey;
+    border-radius: 5px;
+    color: honeydew;
+}
+textarea{
+    background-color: silver;
+    aspect-ratio: 1;
+    width: 100%;
+    height: 100%;
+}
+#sudoku {
+    box-sizing: content-box;
+    color: yellow;
+    width: 560px; 
+    height: 560px;
+    background-color: black;
+    padding: 1px;
+    border: 5px double darkolivegreen;
+    margin-left: calc(calc(100vw - 560px)/2);
+    margin-right: calc(calc(100vw - 560px)/2);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.odd{
+    background-color: white;
+    color: darkslategray;
+    height: 70px; 
+    width: 70px;   
+}
+.even{
+    background-color: darkslategray;
+    color: darkred;
+    height: 70px; 
+    width: 70px;
+}
+.parent{
+    margin-left: calc( calc(100vw / 2) - calc(var(--width)/2));
+    margin-top: calc(calc(100vh/2) - calc(var(--height)/2));
+    width: var(--width);
+    height: calc(3*var(--height));
+    background-color: yellow;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+.child{
+    position: relative;
+    height: 100px;
+    background-color: yellowgreen;
+    font-size: 30px;
+}
+
+.hover{
+    background-color: chocolate;
+}
+.selected{
+    background-color: darkblue !important;
+}
