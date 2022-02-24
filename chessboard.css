@@ -64,6 +64,14 @@ textarea{
     height: 70px; 
     width: 70px;
 }
+.white{
+    height: 70px; 
+    width: 70px;
+}
+.black{
+    height: 70px; 
+    width: 70px;
+}
 .parent{
     margin-left: calc( calc(100vw / 2) - calc(var(--width)/2));
     margin-top: calc(calc(100vh/2) - calc(var(--height)/2));
