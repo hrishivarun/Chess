@@ -97,3 +97,6 @@ textarea{
 .selected{
     background-color: darkblue !important;
 }
+.potential-position{
+    background-color: red;
+}
