@@ -150,14 +150,14 @@ function addPieces(){
     }
     //testing moves
     const temp1= document.createElement('img');
-    temp1.setAttribute('src', 'Chess_qlt60.png');
-    temp1.classList.add('white');
-    temp1.classList.add('queen');
-    sudoku.querySelector('#g4').appendChild(temp1);
+    temp1.setAttribute('src', 'Chess_pdt60.png');
+    temp1.classList.add('black');
+    temp1.classList.add('pawn');
+    sudoku.querySelector('#h3').appendChild(temp1);
 
     const temp= document.createElement('img');
-    temp.setAttribute('src', 'Chess_plt60.png');
+    temp.setAttribute('src', 'Chess_klt60.png');
     temp.classList.add('white');
-    temp.classList.add('pawn');
-    sudoku.querySelector('#g2').appendChild(temp);
+    temp.classList.add('king');
+    sudoku.querySelector('#e4').appendChild(temp);
 }
