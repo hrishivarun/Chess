@@ -17,15 +17,15 @@ sudoku.addEventListener('click', (e) => {
         selectedSquare.classList.remove('selected');
 
 
+        //unselect the piece
+        selectedPiece= null;
+
         //change turns of white/black
         if(whiteMove){
             whiteMove= false;
         }else{
             whiteMove= true;
         }
-
-        //unselect the piece
-        selectedPiece= null;
         
     }
 
@@ -46,15 +46,15 @@ sudoku.addEventListener('click', (e) => {
         selectedSquare.classList.remove('selected');
 
         
+        //unselect the piece
+        selectedPiece= null;
+        
         //change turns of white/black
         if(whiteMove){
             whiteMove= false;
         }else{
             whiteMove= true;
         }
-        
-        //unselect the piece
-        selectedPiece= null;
         
     }
 })
