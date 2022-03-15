@@ -2,11 +2,10 @@
 createBoard();
 //add all the chess pieces on the board
 addPieces();
-
-
+const sudoku= document.querySelector('#sudoku');
 
 //indicating which chess square you're currently hovering over
-document.querySelector('#sudoku').addEventListener('mouseover', (e) => {
+sudoku.addEventListener('mouseover', (e) => {
     if(e.target.matches('.odd')||e.target.matches('.even')){
         e.target.classList.add('hover');
     }else if(e.target.matches('img')){
@@ -15,7 +14,7 @@ document.querySelector('#sudoku').addEventListener('mouseover', (e) => {
     }
 })
 //remove the indication, when mouse pointer moved away from the chess square its currently hovering over
-document.querySelector('#sudoku').addEventListener('mouseout', (e) => {
+sudoku.addEventListener('mouseout', (e) => {
     if(e.target.matches('.odd')||e.target.matches('.even')){
         e.target.classList.remove('hover');
     }else if(e.target.matches('img')){
@@ -148,7 +147,7 @@ function addPieces(){
             div.appendChild(img);
         }
     }
-    //testing moves
+    //testing logic of legal moves for pieces
     const temp1= document.createElement('img');
     temp1.setAttribute('src', 'Chess_pdt60.png');
     temp1.classList.add('black');
@@ -156,8 +155,8 @@ function addPieces(){
     sudoku.querySelector('#h3').appendChild(temp1);
 
     const temp= document.createElement('img');
-    temp.setAttribute('src', 'Chess_klt60.png');
-    temp.classList.add('white');
+    temp.setAttribute('src', 'Chess_kdt60.png');
+    temp.classList.add('black');
     temp.classList.add('king');
-    sudoku.querySelector('#e4').appendChild(temp);
+    sudoku.querySelector('#f4').appendChild(temp);
 }

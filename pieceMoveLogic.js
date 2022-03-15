@@ -1,7 +1,13 @@
+//initially it's white's move
 let whiteMove= true;
+
+//at the start of game, no piece is selected
 let selectedPiece= null;
+
+//all potential positions for any selected piece, at a given moment, to be stored in this array
 potentialPositions= [];
-const sudoku= document.querySelector('#sudoku');
+
+//logic for potential moves, for any selected piece, at a given moment
 sudoku.addEventListener('click', (e) => {
 
 
