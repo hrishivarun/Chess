@@ -149,10 +149,10 @@ function addPieces(){
     }
     //testing logic of legal moves for pieces
 
-    const temp= document.createElement('img');
-    temp.setAttribute('src', 'Chess_pdt60.png');
-    temp.classList.add('black');
-    temp.classList.add('pawn');
-    sudoku.querySelector('#a2').removeChild(sudoku.querySelector('#a2').firstElementChild);
-    sudoku.querySelector('#a2').appendChild(temp);
+    // const temp= document.createElement('img');
+    // temp.setAttribute('src', 'Chess_pdt60.png');
+    // temp.classList.add('black');
+    // temp.classList.add('pawn');
+    // sudoku.querySelector('#a2').removeChild(sudoku.querySelector('#a2').firstElementChild);
+    // sudoku.querySelector('#a2').appendChild(temp);
 }
