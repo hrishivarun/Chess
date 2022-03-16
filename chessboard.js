@@ -106,13 +106,13 @@ function addPieces(){
             img.classList.add('pawn');
             div.appendChild(img);
         }else if(i==49||i==50||i==51||i==52||i==53||i==54||i==55||i==56){
-            // const div= sudoku.querySelector(`div:nth-child(${i})`);
-            // const img= document.createElement('img');
-            // img.setAttribute('src', 'Chess_plt60.png');
-            // img.setAttribute('alt', 'White Pawn');
-            // img.classList.add('white');
-            // img.classList.add('pawn');
-            // div.appendChild(img);       
+            const div= sudoku.querySelector(`div:nth-child(${i})`);
+            const img= document.createElement('img');
+            img.setAttribute('src', 'Chess_plt60.png');
+            img.setAttribute('alt', 'White Pawn');
+            img.classList.add('white');
+            img.classList.add('pawn');
+            div.appendChild(img);       
         }else if(i==4){
             const div= sudoku.querySelector(`div:nth-child(${i})`);
             const img= document.createElement('img');
@@ -148,15 +148,11 @@ function addPieces(){
         }
     }
     //testing logic of legal moves for pieces
-    const temp1= document.createElement('img');
-    temp1.setAttribute('src', 'Chess_pdt60.png');
-    temp1.classList.add('black');
-    temp1.classList.add('pawn');
-    sudoku.querySelector('#h3').appendChild(temp1);
 
     const temp= document.createElement('img');
-    temp.setAttribute('src', 'Chess_kdt60.png');
+    temp.setAttribute('src', 'Chess_pdt60.png');
     temp.classList.add('black');
-    temp.classList.add('king');
-    sudoku.querySelector('#f4').appendChild(temp);
+    temp.classList.add('pawn');
+    sudoku.querySelector('#a2').removeChild(sudoku.querySelector('#a2').firstElementChild);
+    sudoku.querySelector('#a2').appendChild(temp);
 }

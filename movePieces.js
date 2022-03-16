@@ -8,6 +8,27 @@ sudoku.addEventListener('click', (e) => {
         const nextSquare= e.target;
         nextSquare.appendChild(selectedPiece);
 
+        if(selectedPiece.matches('.pawn')){
+            const pawnAtEndOfFile= /[a-h](1|8)/;
+            const position= nextSquare.getAttribute('id');
+            if(pawnAtEndOfFile.test(position)){
+                nextSquare.removeChild(selectedPiece);
+    
+                const queen= document.createElement('img');
+                if(whiteMove){
+                    queen.setAttribute('src', 'Chess_qlt60.png');
+                    queen.classList.add('white');
+                    queen.classList.add('queen');
+                    nextSquare.appendChild(queen);
+                }else{
+                    queen.setAttribute('src', 'Chess_qdt60.png');
+                    queen.classList.add('black');
+                    queen.classList.add('queen');
+                    nextSquare.appendChild(queen);
+                }
+            }
+        }
+
         
         //remove all the other potential-positions from the board for the previously selected piece
         previousPotentialPositions= sudoku.querySelectorAll('.potential-position');
@@ -36,6 +57,27 @@ sudoku.addEventListener('click', (e) => {
         const nextSquare= e.target.parentElement;
         nextSquare.removeChild(nextSquare.firstElementChild);
         nextSquare.appendChild(selectedPiece);
+
+        if(selectedPiece.matches('.pawn')){
+            const pawnAtEndOfFile= /[a-h](1|8)/;
+            const position= nextSquare.getAttribute('id');
+            if(pawnAtEndOfFile.test(position)){
+                nextSquare.removeChild(selectedPiece);
+    
+                const queen= document.createElement('img');
+                if(whiteMove){
+                    queen.setAttribute('src', 'Chess_qlt60.png');
+                    queen.classList.add('white');
+                    queen.classList.add('queen');
+                    nextSquare.appendChild(queen);
+                }else{
+                    queen.setAttribute('src', 'Chess_qdt60.png');
+                    queen.classList.add('black');
+                    queen.classList.add('queen');
+                    nextSquare.appendChild(queen);
+                }
+            }
+        }
 
 
         //remove all the other potential-positions from the board for the previously selected piece

@@ -1,20 +1,11 @@
-//initially it's white's move
-let whiteMove= true;
-
-//at the start of game, no piece is selected
-let selectedPiece= null;
-
-//all potential positions for any selected piece, at a given moment, to be stored in this array
-potentialPositions= [];
-
-//logic for potential moves, for any selected piece, at a given moment
+//logic for potential moves, for any selected white piece, at a given moment
 sudoku.addEventListener('click', (e) => {
 
 
 
     //if it's white turn to move
-    if(whiteMove){
-        if(e.target.matches('.white')){
+    if(!whiteMove){
+        if(e.target.matches('.black')){
             selectedPiece= e.target;
             selectedSquare= e.target.parentElement;
             selectedSquare.classList.toggle('selected');
@@ -31,12 +22,12 @@ sudoku.addEventListener('click', (e) => {
                 
                 //calculating potential future positions
                 if(selectedSquare.matches('.selected')){
-                    const potentialPosition= sudoku.querySelector(`#${position[0]}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
+                    const potentialPosition= sudoku.querySelector(`#${position[0]}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
                     if(!potentialPosition.childElementCount){
                         potentialPosition.classList.add('potential-position');
                         potentialPositions.push(potentialPosition);
-                        if(position[1]=='2'){
-                            potentialPositionSpecialCase= sudoku.querySelector(`#${position[0]}${String.fromCharCode(position.charCodeAt(1) + 2)}`);
+                        if(position[1]=='7'){
+                            potentialPositionSpecialCase= sudoku.querySelector(`#${position[0]}${String.fromCharCode(position.charCodeAt(1) - 2)}`);
                             if(!potentialPositionSpecialCase.childElementCount){
                                 potentialPositionSpecialCase.classList.add('potential-position');
                                 potentialPositions.push(potentialPositionSpecialCase);
@@ -45,14 +36,14 @@ sudoku.addEventListener('click', (e) => {
                     }
                     const pawnUpPosition= [];
                     if(position[0]>'a'){
-                        pawnUpPosition.push(sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) + 1)}`));
+                        pawnUpPosition.push(sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) - 1)}`));
                     }
                     if(position[0]<'h'){
-                        pawnUpPosition.push(sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) + 1)}`));
+                        pawnUpPosition.push(sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) - 1)}`));
                     }
                     for(let i=0; i<pawnUpPosition.length; i++){
                         if(pawnUpPosition[i].childElementCount){
-                            if(pawnUpPosition[i].querySelector('img').matches('.black')){
+                            if(pawnUpPosition[i].querySelector('img').matches('.white')){
                                 pawnUpPosition[i].classList.add('potential-position');
                             }
                         }
@@ -69,14 +60,14 @@ sudoku.addEventListener('click', (e) => {
                     potentialPositions.length= 0;
                     const pawnUpPosition= [];
                     if(position[0]>'a'){
-                        pawnUpPosition.push(sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) + 1)}`));
+                        pawnUpPosition.push(sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) - 1)}`));
                     }
                     if(position[0]<'h'){
-                        pawnUpPosition.push(sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) + 1)}`));
+                        pawnUpPosition.push(sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) - 1)}`));
                     }
                     for(let i=0; i<pawnUpPosition.length; i++){
                         if(pawnUpPosition[i].childElementCount){
-                            if(pawnUpPosition[i].querySelector('img').matches('.black')){
+                            if(pawnUpPosition[i].querySelector('img').matches('.white')){
                                 pawnUpPosition[i].classList.remove('potential-position');
                             }
                         }
@@ -99,28 +90,28 @@ sudoku.addEventListener('click', (e) => {
                 if(selectedSquare.matches('.selected')){
                     if((position.charCodeAt(0) + 2)<=104&&(position.charCodeAt(1) + 1)<=56){
                         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 2)}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
-                        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches('.black')){
+                        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches('.white')){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
                         }
                     }
                     if((position.charCodeAt(0) + 2)<=104&&(position.charCodeAt(1) - 1)>=49){
                         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 2)}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
-                        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches('.black')){
+                        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches('.white')){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
                         }
                     }
                     if((position.charCodeAt(0) - 2)>=97&&(position.charCodeAt(1) + 1)<=56){
                         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 2)}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
-                        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches('.black')){
+                        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches('.white')){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
                         }
                     }
                     if((position.charCodeAt(0) - 2)>=97&&(position.charCodeAt(1) - 1)>=49){
                         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 2)}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
-                        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches('.black')){
+                        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches('.white')){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
                         }
@@ -128,28 +119,28 @@ sudoku.addEventListener('click', (e) => {
 
                     if((position.charCodeAt(0) + 1)<=104&&(position.charCodeAt(1) + 2)<=56){
                         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) + 2)}`);
-                        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches('.black')){
+                        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches('.white')){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
                         }
                     }
                     if((position.charCodeAt(0) + 1)<=104&&(position.charCodeAt(1) - 2)>=49){
                         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) - 2)}`);
-                        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches('.black')){
+                        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches('.white')){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
                         }
                     }
                     if((position.charCodeAt(0) - 1)>=97&&(position.charCodeAt(1) + 2)<=56){
                         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) + 2)}`);
-                        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches('.black')){
+                        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches('.white')){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
                         }
                     }
                     if((position.charCodeAt(0) - 1)>=97&&(position.charCodeAt(1) - 2)>=49){
                         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) - 2)}`);
-                        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches('.black')){
+                        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches('.white')){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
                         }
@@ -185,10 +176,10 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         while((!potentialPosition.childElementCount&&(potentialPositionId[0]<='h'&&potentialPositionId[1]<='8'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
-                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black')){
+                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white')){
                                 break;
                             }
                             if(potentialPositionId[0]=='h'||potentialPositionId[1]=='8'){
@@ -203,10 +194,10 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         while((!potentialPosition.childElementCount&&(potentialPositionId[0]<='h'&&potentialPositionId[1]>='1'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
-                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black')){
+                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white')){
                                 break;
                             }
                             if(potentialPositionId[0]=='h'||potentialPositionId[1]=='1'){
@@ -221,10 +212,10 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         while((!potentialPosition.childElementCount&&(potentialPositionId[0]>='a'&&potentialPositionId[1]>='1'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
-                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black')){
+                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white')){
                                 break;
                             }
                             if(potentialPositionId[0]=='a'||potentialPositionId[1]=='1'){
@@ -239,10 +230,10 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         while((!potentialPosition.childElementCount&&(potentialPositionId[0]>='a'&&potentialPositionId[1]<='8'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
-                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black')){
+                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white')){
                                 break;
                             }
                             if(potentialPositionId[0]=='a'||potentialPositionId[1]=='8'){
@@ -283,10 +274,10 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0))}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         while((!potentialPosition.childElementCount&&(potentialPositionId[1]<='8'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
-                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black')){
+                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white')){
                                 break;
                             }
                             if(potentialPositionId[1]=='8'){
@@ -301,10 +292,10 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1))}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         while((!potentialPosition.childElementCount&&(potentialPositionId[0]<='h'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
-                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black')){
+                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white')){
                                 break;
                             }
                             if(potentialPositionId[0]=='h'){
@@ -319,10 +310,10 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0))}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         while((!potentialPosition.childElementCount&&(potentialPositionId[1]>='1'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
-                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black')){
+                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white')){
                                 break;
                             }
                             if(potentialPositionId[1]=='1'){
@@ -337,10 +328,10 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1))}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         while((!potentialPosition.childElementCount&&(potentialPositionId[0]>='a'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
-                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black')){
+                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white')){
                                 break;
                             }
                             if(potentialPositionId[0]=='a'){
@@ -381,10 +372,10 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         while((!potentialPosition.childElementCount&&(potentialPositionId[0]<='h'&&potentialPositionId[1]<='8'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
-                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black')){
+                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white')){
                                 break;
                             }
                             if(potentialPositionId[0]=='h'||potentialPositionId[1]=='8'){
@@ -399,10 +390,10 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         while((!potentialPosition.childElementCount&&(potentialPositionId[0]<='h'&&potentialPositionId[1]>='1'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
-                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black')){
+                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white')){
                                 break;
                             }
                             if(potentialPositionId[0]=='h'||potentialPositionId[1]=='1'){
@@ -417,10 +408,10 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         while((!potentialPosition.childElementCount&&(potentialPositionId[0]>='a'&&potentialPositionId[1]>='1'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
-                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black')){
+                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white')){
                                 break;
                             }
                             if(potentialPositionId[0]=='a'||potentialPositionId[1]=='1'){
@@ -435,10 +426,10 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         while((!potentialPosition.childElementCount&&(potentialPositionId[0]>='a'&&potentialPositionId[1]<='8'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
-                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black')){
+                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white')){
                                 break;
                             }
                             if(potentialPositionId[0]=='a'||potentialPositionId[1]=='8'){
@@ -454,10 +445,10 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0))}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         while((!potentialPosition.childElementCount&&(potentialPositionId[1]<='8'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
-                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black')){
+                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white')){
                                 break;
                             }
                             if(potentialPositionId[1]=='8'){
@@ -472,10 +463,10 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1))}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         while((!potentialPosition.childElementCount&&(potentialPositionId[0]<='h'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
-                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black')){
+                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white')){
                                 break;
                             }
                             if(potentialPositionId[0]=='h'){
@@ -490,10 +481,10 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0))}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         while((!potentialPosition.childElementCount&&(potentialPositionId[1]>='1'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
-                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black')){
+                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white')){
                                 break;
                             }
                             if(potentialPositionId[1]=='1'){
@@ -508,10 +499,10 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1))}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         while((!potentialPosition.childElementCount&&(potentialPositionId[0]>='a'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
-                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black')){
+                            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white')){
                                 break;
                             }
                             if(potentialPositionId[0]=='a'){
@@ -552,7 +543,7 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         if((!potentialPosition.childElementCount&&(potentialPositionId[0]<='h'&&potentialPositionId[1]<='8'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
                         }
@@ -562,7 +553,7 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         if((!potentialPosition.childElementCount&&(potentialPositionId[0]<='h'&&potentialPositionId[1]>='1'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
                         }
@@ -572,7 +563,7 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         if((!potentialPosition.childElementCount&&(potentialPositionId[0]>='a'&&potentialPositionId[1]>='1'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
                         }
@@ -582,7 +573,7 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         if((!potentialPosition.childElementCount&&(potentialPositionId[0]>='a'&&potentialPositionId[1]<='8'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
                         }
@@ -593,7 +584,7 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0))}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         if((!potentialPosition.childElementCount&&(potentialPositionId[1]<='8'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
                         }
@@ -603,7 +594,7 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1))}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         if((!potentialPosition.childElementCount&&(potentialPositionId[0]<='h'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
                         }
@@ -613,7 +604,7 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0))}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         if((!potentialPosition.childElementCount&&(potentialPositionId[1]>='1'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
                         }
@@ -623,7 +614,7 @@ sudoku.addEventListener('click', (e) => {
                         potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1))}`);
                         potentialPositionId= potentialPosition.getAttribute('id');
                         if((!potentialPosition.childElementCount&&(potentialPositionId[0]>='a'))
-                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.black'))){
+                        ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches('.white'))){
                             potentialPosition.classList.add('potential-position');
                             potentialPositions.push(potentialPosition);
                         }
