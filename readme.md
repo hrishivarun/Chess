@@ -1,4 +1,4 @@
-convert pawns into queens once end is reached.
 al-pasaun or whatever not implemented yet.
-copy all the logic for chess moves to black pieces too.
 king can't go where there is check.
+update the javascript 'piecesWhite' and 'piecesBlack' objects, when a piece is 'removed from/added to' the board.
+change pawn to king after reaching end of file.

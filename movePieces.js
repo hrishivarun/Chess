@@ -7,6 +7,72 @@ sudoku.addEventListener('click', (e) => {
         //select the position and move the selected piece onto that position
         const nextSquare= e.target;
         nextSquare.appendChild(selectedPiece);
+        
+        //remove highlight from the previous position
+        selectedSquare.classList.remove('selected');
+
+
+
+        //get new position after the piece has been moved
+        const position= nextSquare.getAttribute('id');
+
+        //remove previous 'potential-positions' for the piece and update its current position
+        const piece= selectedPiece.getAttribute('data-piece');
+        if(whiteMove){
+            piecesWhite[piece].potentialPositions.forEach(position => {
+                position.classList.remove('potential-position');
+            });
+
+            piecesWhite[piece].position= position;
+
+        }else{
+            piecesBlack[piece].potentialPositions.forEach(position => {
+                position.classList.remove('potential-position');
+            });
+
+            piecesBlack[piece].position= position;
+        }
+
+
+
+        //update 'potential-positions' for every piece onboard, after one move
+        Object.entries(piecesWhite).forEach(piece => {
+            piece[1].potentialPositions= [];
+            if(piece[1].pieceType=== 'pawn'){
+                legalPawnMoves(piece[1].position, 'black', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'knight'){
+                legalKnightMoves(piece[1].position, 'black', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'bishop'){
+                legalBishopMoves(piece[1].position, 'black', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'rook'){
+                legalRookMoves(piece[1].position, 'black', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'queen'){
+                legalQueenMoves(piece[1].position, 'black', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'king'){
+                legalKingMoves(piece[1].position, 'black', piece[1].potentialPositions);
+            }
+        });
+
+        Object.entries(piecesBlack).forEach(piece => {
+            piece[1].potentialPositions= [];
+            if(piece[1].pieceType=== 'pawn'){
+                legalPawnMoves(piece[1].position, 'white', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'knight'){
+                legalKnightMoves(piece[1].position, 'white', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'bishop'){
+                legalBishopMoves(piece[1].position, 'white', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'rook'){
+                legalRookMoves(piece[1].position, 'white', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'queen'){
+                legalQueenMoves(piece[1].position, 'white', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'king'){
+                legalKingMoves(piece[1].position, 'white', piece[1].potentialPositions);
+            }
+        });
+
+
+
+
 
         if(selectedPiece.matches('.pawn')){
             const pawnAtEndOfFile= /[a-h](1|8)/;
@@ -29,13 +95,8 @@ sudoku.addEventListener('click', (e) => {
             }
         }
 
-        
-        //remove all the other potential-positions from the board for the previously selected piece
-        previousPotentialPositions= sudoku.querySelectorAll('.potential-position');
-        previousPotentialPositions.forEach(previousPotentialPosition => {
-            previousPotentialPosition.classList.remove('potential-position');
-        });
-        selectedSquare.classList.remove('selected');
+
+
 
 
         //unselect the piece
@@ -53,10 +114,82 @@ sudoku.addEventListener('click', (e) => {
     //else, if the position did have a piece of opposite color 
     else if(e.target.parentElement.matches('.potential-position')){
         
+
+        const removedPiece= e.target.getAttribute('data-piece');
+        console.log(removedPiece);
+
+
+
+        
+
         //select the position, remove the piece of opposite color and move the selected piece onto that position
         const nextSquare= e.target.parentElement;
         nextSquare.removeChild(nextSquare.firstElementChild);
         nextSquare.appendChild(selectedPiece);
+
+        selectedSquare.classList.remove('selected');
+
+
+
+        //get new position after the piece has been moved
+        const position= nextSquare.getAttribute('id');
+
+        //remove previous 'potential-positions' for the piece and update its current position
+        const piece= selectedPiece.getAttribute('data-piece');
+        if(whiteMove){
+            piecesWhite[piece].potentialPositions.forEach(position => {
+                position.classList.remove('potential-position');
+            });
+
+            piecesWhite[piece].position= position;
+        }else{
+            piecesBlack[piece].potentialPositions.forEach(position => {
+                position.classList.remove('potential-position');
+            });
+
+            piecesBlack[piece].position= position;
+        }
+
+
+
+        //update 'potential-positions' for every piece onboard, after one move
+        Object.entries(piecesWhite).forEach(piece => {
+            piece[1].potentialPositions= [];
+            if(piece[1].pieceType=== 'pawn'){
+                legalPawnMoves(piece[1].position, 'black', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'knight'){
+                legalKnightMoves(piece[1].position, 'black', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'bishop'){
+                legalBishopMoves(piece[1].position, 'black', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'rook'){
+                legalRookMoves(piece[1].position, 'black', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'queen'){
+                legalQueenMoves(piece[1].position, 'black', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'king'){
+                legalKingMoves(piece[1].position, 'black', piece[1].potentialPositions);
+            }
+        });
+
+        Object.entries(piecesBlack).forEach(piece => {
+            piece[1].potentialPositions= [];
+            if(piece[1].pieceType=== 'pawn'){
+                legalPawnMoves(piece[1].position, 'white', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'knight'){
+                legalKnightMoves(piece[1].position, 'white', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'bishop'){
+                legalBishopMoves(piece[1].position, 'white', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'rook'){
+                legalRookMoves(piece[1].position, 'white', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'queen'){
+                legalQueenMoves(piece[1].position, 'white', piece[1].potentialPositions);
+            }else if(piece[1].pieceType== 'king'){
+                legalKingMoves(piece[1].position, 'white', piece[1].potentialPositions);
+            }
+        });
+
+
+
+
 
         if(selectedPiece.matches('.pawn')){
             const pawnAtEndOfFile= /[a-h](1|8)/;
@@ -80,12 +213,7 @@ sudoku.addEventListener('click', (e) => {
         }
 
 
-        //remove all the other potential-positions from the board for the previously selected piece
-        previousPotentialPositions= sudoku.querySelectorAll('.potential-position');
-        previousPotentialPositions.forEach(previousPotentialPosition => {
-            previousPotentialPosition.classList.remove('potential-position');
-        });
-        selectedSquare.classList.remove('selected');
+
 
         
         //unselect the piece

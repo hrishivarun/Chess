@@ -54,6 +54,11 @@ function addPieces(){
             const img= document.createElement('img');
             img.setAttribute('src', 'Chess_rdt60.png');
             img.setAttribute('alt', 'Black Rook');
+            if(i==1){
+            img.setAttribute('data-piece', `rookOne`);
+            }else{
+                img.setAttribute('data-piece', `rookTwo`);
+            }
             img.classList.add('black');
             img.classList.add('rook');
             div.appendChild(img);
@@ -62,6 +67,11 @@ function addPieces(){
             const img= document.createElement('img');
             img.setAttribute('src', 'Chess_ndt60.png');
             img.setAttribute('alt', 'Black Knight');
+            if(i==2){
+                img.setAttribute('data-piece', `knightOne`);
+            }else{
+                img.setAttribute('data-piece', `knightTwo`);
+            }
             img.classList.add('black');
             img.classList.add('knight');
             div.appendChild(img);
@@ -70,6 +80,11 @@ function addPieces(){
             const img= document.createElement('img');
             img.setAttribute('src', 'Chess_bdt60.png');
             img.setAttribute('alt', 'Black Bishop');
+            if(i==1){
+                img.setAttribute('data-piece', `bishopOne`);
+            }else{
+                img.setAttribute('data-piece', `bishopTwo`);
+            }
             img.classList.add('black');
             img.classList.add('bishop');
             div.appendChild(img);
@@ -78,6 +93,11 @@ function addPieces(){
             const img= document.createElement('img');
             img.setAttribute('src', 'Chess_rlt60.png');
             img.setAttribute('alt', 'White Rook');
+            if(i==57){
+                img.setAttribute('data-piece', `rookOne`);
+            }else{
+                img.setAttribute('data-piece', `rookTwo`);
+            }
             img.classList.add('white');
             img.classList.add('rook');
             div.appendChild(img);
@@ -86,6 +106,11 @@ function addPieces(){
             const img= document.createElement('img');
             img.setAttribute('src', 'Chess_nlt60.png');
             img.setAttribute('alt', 'White Knight');
+            if(i==58){
+                img.setAttribute('data-piece', `knightOne`);
+            }else{
+                img.setAttribute('data-piece', `knightTwo`);
+            }
             img.classList.add('white');
             img.classList.add('knight');
             div.appendChild(img);
@@ -94,6 +119,11 @@ function addPieces(){
             const img= document.createElement('img');
             img.setAttribute('src', 'Chess_blt60.png');
             img.setAttribute('alt', 'White Bishop');
+            if(i==59){
+                img.setAttribute('data-piece', `bishopOne`);
+            }else{
+                img.setAttribute('data-piece', `bishopTwo`);
+            }
             img.classList.add('white');
             img.classList.add('bishop');
             div.appendChild(img);
@@ -102,6 +132,23 @@ function addPieces(){
             const img= document.createElement('img');
             img.setAttribute('src', 'Chess_pdt60.png');
             img.setAttribute('alt', 'Black Pawn');
+            if(i==9){
+                img.setAttribute('data-piece', `pawnOne`);
+            }else if(i==10){
+                img.setAttribute('data-piece', `pawnTwo`);
+            }else if(i==11){
+                img.setAttribute('data-piece', `pawnThree`);
+            }else if(i==12){
+                img.setAttribute('data-piece', `pawnFour`);
+            }else if(i==13){
+                img.setAttribute('data-piece', `pawnFive`);
+            }else if(i==14){
+                img.setAttribute('data-piece', `pawnSix`);
+            }else if(i==15){
+                img.setAttribute('data-piece', `pawnSeven`);
+            }else if(i==16){
+                img.setAttribute('data-piece', `pawnEight`);
+            }
             img.classList.add('black');
             img.classList.add('pawn');
             div.appendChild(img);
@@ -110,6 +157,23 @@ function addPieces(){
             const img= document.createElement('img');
             img.setAttribute('src', 'Chess_plt60.png');
             img.setAttribute('alt', 'White Pawn');
+            if(i==49){
+                img.setAttribute('data-piece', `pawnOne`);
+            }else if(i==50){
+                img.setAttribute('data-piece', `pawnTwo`);
+            }else if(i==51){
+                img.setAttribute('data-piece', `pawnThree`);
+            }else if(i==52){
+                img.setAttribute('data-piece', `pawnFour`);
+            }else if(i==53){
+                img.setAttribute('data-piece', `pawnFive`);
+            }else if(i==54){
+                img.setAttribute('data-piece', `pawnSix`);
+            }else if(i==55){
+                img.setAttribute('data-piece', `pawnSeven`);
+            }else if(i==56){
+                img.setAttribute('data-piece', `pawnEight`);
+            }
             img.classList.add('white');
             img.classList.add('pawn');
             div.appendChild(img);       
@@ -118,6 +182,7 @@ function addPieces(){
             const img= document.createElement('img');
             img.setAttribute('src', 'Chess_qdt60.png');
             img.setAttribute('alt', 'Black Queen');
+            img.setAttribute('data-piece', `queenOne`);
             img.classList.add('black');
             img.classList.add('queen');
             div.appendChild(img);
@@ -126,6 +191,7 @@ function addPieces(){
             const img= document.createElement('img');
             img.setAttribute('src', 'Chess_kdt60.png');
             img.setAttribute('alt', 'Black King');
+            img.setAttribute('data-piece', `kingBlack`);
             img.classList.add('black');
             img.classList.add('king');
             div.appendChild(img);
@@ -134,6 +200,7 @@ function addPieces(){
             const img= document.createElement('img');
             img.setAttribute('src', 'Chess_klt60.png');
             img.setAttribute('alt', 'White King');
+            img.setAttribute('data-piece', `kingWhite`);
             img.classList.add('white');
             img.classList.add('king');
             div.appendChild(img);
@@ -142,6 +209,7 @@ function addPieces(){
             const img= document.createElement('img');
             img.setAttribute('src', 'Chess_qlt60.png');
             img.setAttribute('alt', 'White Queen');
+            img.setAttribute('data-piece', `queenOne`);
             img.classList.add('white');
             img.classList.add('queen');
             div.appendChild(img);
