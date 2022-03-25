@@ -35,6 +35,98 @@ sudoku.addEventListener('click', (e) => {
 
 
 
+
+
+        if(selectedPiece.matches('.pawn')){
+            const pawnAtEndOfFile= /[a-h](1|8)/;
+            const position= nextSquare.getAttribute('id');
+            if(pawnAtEndOfFile.test(position)){
+
+                
+    
+                const queen= document.createElement('img');
+                if(whiteMove){
+                    delete piecesWhite[piece];
+
+                    queen.setAttribute('src', 'Chess_qlt60.png');
+                    if(extraWhiteQueenCount=== 0){
+                        queen.setAttribute('data-piece', 'queenTwo');
+                    }else if(extraWhiteQueenCount=== 1){
+                        queen.setAttribute('data-piece', 'queenThree');
+                    }else if(extraWhiteQueenCount=== 2){
+                        queen.setAttribute('data-piece', 'queenFour');
+                    }else if(extraWhiteQueenCount=== 3){
+                        queen.setAttribute('data-piece', 'queenFive');
+                    }else if(extraWhiteQueenCount=== 4){
+                        queen.setAttribute('data-piece', 'queenSix');
+                    }else if(extraWhiteQueenCount=== 5){
+                        queen.setAttribute('data-piece', 'queenSeven');
+                    }else if(extraWhiteQueenCount=== 6){
+                        queen.setAttribute('data-piece', 'queenEight');
+                    }else if(extraWhiteQueenCount=== 7){
+                        queen.setAttribute('data-piece', 'queenNine');
+                    }
+
+                    const extraQueen= {
+                        pieceType: 'queen',
+                        position: position,
+                        potentialPositions: []
+                    };
+                    extraQueenName= queen.getAttribute('data-piece');
+                    piecesWhite[extraQueenName]= extraQueen;
+
+                    extraWhiteQueenCount++;
+
+                    queen.classList.add('white');
+                }
+                
+                
+                
+                else{
+                    delete piecesBlack[piece];
+
+                    queen.setAttribute('src', 'Chess_qdt60.png');
+                    if(extraBlackQueenCount=== 0){
+                        queen.setAttribute('data-piece', 'queenTwo');
+                    }else if(extraBlackQueenCount=== 1){
+                        queen.setAttribute('data-piece', 'queenThree');
+                    }else if(extraBlackQueenCount=== 2){
+                        queen.setAttribute('data-piece', 'queenFour');
+                    }else if(extraBlackQueenCount=== 3){
+                        queen.setAttribute('data-piece', 'queenFive');
+                    }else if(extraBlackQueenCount=== 4){
+                        queen.setAttribute('data-piece', 'queenSix');
+                    }else if(extraBlackQueenCount=== 5){
+                        queen.setAttribute('data-piece', 'queenSeven');
+                    }else if(extraBlackQueenCount=== 6){
+                        queen.setAttribute('data-piece', 'queenEight');
+                    }else if(extraBlackQueenCount=== 7){
+                        queen.setAttribute('data-piece', 'queenNine');
+                    }
+                    
+                    const extraQueen= {
+                        pieceType: 'queen',
+                        position: position,
+                        potentialPositions: []
+                    };
+                    extraQueenName= queen.getAttribute('data-piece');
+                    piecesBlack[extraQueenName]= extraQueen;
+
+                    extraBlackQueenCount++;
+
+                    queen.classList.add('black');
+                }
+                
+                queen.classList.add('queen');
+
+                nextSquare.replaceChild(queen, selectedPiece);
+            }
+        }
+
+
+
+
+
         //update 'potential-positions' for every piece onboard, after one move
         Object.entries(piecesWhite).forEach(piece => {
             piece[1].potentialPositions= [];
@@ -74,31 +166,6 @@ sudoku.addEventListener('click', (e) => {
 
 
 
-        if(selectedPiece.matches('.pawn')){
-            const pawnAtEndOfFile= /[a-h](1|8)/;
-            const position= nextSquare.getAttribute('id');
-            if(pawnAtEndOfFile.test(position)){
-                nextSquare.removeChild(selectedPiece);
-    
-                const queen= document.createElement('img');
-                if(whiteMove){
-                    queen.setAttribute('src', 'Chess_qlt60.png');
-                    queen.classList.add('white');
-                    queen.classList.add('queen');
-                    nextSquare.appendChild(queen);
-                }else{
-                    queen.setAttribute('src', 'Chess_qdt60.png');
-                    queen.classList.add('black');
-                    queen.classList.add('queen');
-                    nextSquare.appendChild(queen);
-                }
-            }
-        }
-
-
-
-
-
         //unselect the piece
         selectedPiece= null;
 
@@ -111,21 +178,34 @@ sudoku.addEventListener('click', (e) => {
         
     }
 
+
+
+
+
+
+
+
+
+
     //else, if the position did have a piece of opposite color 
     else if(e.target.parentElement.matches('.potential-position')){
         
 
-        const removedPiece= e.target.getAttribute('data-piece');
-        console.log(removedPiece);
 
-
-
+        //select the position, remove the piece of opposite color and move the selected piece onto that position        
         
+        //removing the captured piece from javascript data 
+        const pieceToBeRemoved= e.target.getAttribute('data-piece');
+        if(whiteMove){
+            delete piecesBlack[pieceToBeRemoved];
+        }else{
+            delete piecesWhite[pieceToBeRemoved];
+        }
 
-        //select the position, remove the piece of opposite color and move the selected piece onto that position
+
+        //replacing the captured piece in browser
         const nextSquare= e.target.parentElement;
-        nextSquare.removeChild(nextSquare.firstElementChild);
-        nextSquare.appendChild(selectedPiece);
+        nextSquare.replaceChild(selectedPiece, nextSquare.firstElementChild);
 
         selectedSquare.classList.remove('selected');
 
@@ -152,6 +232,98 @@ sudoku.addEventListener('click', (e) => {
 
 
 
+
+
+        if(selectedPiece.matches('.pawn')){
+            const pawnAtEndOfFile= /[a-h](1|8)/;
+            const position= nextSquare.getAttribute('id');
+            if(pawnAtEndOfFile.test(position)){
+
+                
+    
+                const queen= document.createElement('img');
+                if(whiteMove){
+                    delete piecesWhite[piece];
+
+                    queen.setAttribute('src', 'Chess_qlt60.png');
+                    if(extraWhiteQueenCount=== 0){
+                        queen.setAttribute('data-piece', 'queenTwo');
+                    }else if(extraWhiteQueenCount=== 1){
+                        queen.setAttribute('data-piece', 'queenThree');
+                    }else if(extraWhiteQueenCount=== 2){
+                        queen.setAttribute('data-piece', 'queenFour');
+                    }else if(extraWhiteQueenCount=== 3){
+                        queen.setAttribute('data-piece', 'queenFive');
+                    }else if(extraWhiteQueenCount=== 4){
+                        queen.setAttribute('data-piece', 'queenSix');
+                    }else if(extraWhiteQueenCount=== 5){
+                        queen.setAttribute('data-piece', 'queenSeven');
+                    }else if(extraWhiteQueenCount=== 6){
+                        queen.setAttribute('data-piece', 'queenEight');
+                    }else if(extraWhiteQueenCount=== 7){
+                        queen.setAttribute('data-piece', 'queenNine');
+                    }
+
+                    const extraQueen= {
+                        pieceType: 'queen',
+                        position: position,
+                        potentialPositions: []
+                    };
+                    extraQueenName= queen.getAttribute('data-piece');
+                    piecesWhite[extraQueenName]= extraQueen;
+
+                    extraWhiteQueenCount++;
+
+                    queen.classList.add('white');
+                }
+                
+                
+                
+                else{
+                    delete piecesBlack[piece];
+
+                    queen.setAttribute('src', 'Chess_qdt60.png');
+                    if(extraBlackQueenCount=== 0){
+                        queen.setAttribute('data-piece', 'queenTwo');
+                    }else if(extraBlackQueenCount=== 1){
+                        queen.setAttribute('data-piece', 'queenThree');
+                    }else if(extraBlackQueenCount=== 2){
+                        queen.setAttribute('data-piece', 'queenFour');
+                    }else if(extraBlackQueenCount=== 3){
+                        queen.setAttribute('data-piece', 'queenFive');
+                    }else if(extraBlackQueenCount=== 4){
+                        queen.setAttribute('data-piece', 'queenSix');
+                    }else if(extraBlackQueenCount=== 5){
+                        queen.setAttribute('data-piece', 'queenSeven');
+                    }else if(extraBlackQueenCount=== 6){
+                        queen.setAttribute('data-piece', 'queenEight');
+                    }else if(extraBlackQueenCount=== 7){
+                        queen.setAttribute('data-piece', 'queenNine');
+                    }
+                    
+                    const extraQueen= {
+                        pieceType: 'queen',
+                        position: position,
+                        potentialPositions: []
+                    };
+                    extraQueenName= queen.getAttribute('data-piece');
+                    piecesBlack[extraQueenName]= extraQueen;
+
+                    extraBlackQueenCount++;
+
+                    queen.classList.add('black');
+                }
+                
+                queen.classList.add('queen');
+
+                nextSquare.replaceChild(queen, selectedPiece);
+            }
+        }
+
+
+
+
+
         //update 'potential-positions' for every piece onboard, after one move
         Object.entries(piecesWhite).forEach(piece => {
             piece[1].potentialPositions= [];
@@ -186,31 +358,6 @@ sudoku.addEventListener('click', (e) => {
                 legalKingMoves(piece[1].position, 'white', piece[1].potentialPositions);
             }
         });
-
-
-
-
-
-        if(selectedPiece.matches('.pawn')){
-            const pawnAtEndOfFile= /[a-h](1|8)/;
-            const position= nextSquare.getAttribute('id');
-            if(pawnAtEndOfFile.test(position)){
-                nextSquare.removeChild(selectedPiece);
-    
-                const queen= document.createElement('img');
-                if(whiteMove){
-                    queen.setAttribute('src', 'Chess_qlt60.png');
-                    queen.classList.add('white');
-                    queen.classList.add('queen');
-                    nextSquare.appendChild(queen);
-                }else{
-                    queen.setAttribute('src', 'Chess_qdt60.png');
-                    queen.classList.add('black');
-                    queen.classList.add('queen');
-                    nextSquare.appendChild(queen);
-                }
-            }
-        }
 
 
 

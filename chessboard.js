@@ -80,7 +80,7 @@ function addPieces(){
             const img= document.createElement('img');
             img.setAttribute('src', 'Chess_bdt60.png');
             img.setAttribute('alt', 'Black Bishop');
-            if(i==1){
+            if(i==3){
                 img.setAttribute('data-piece', `bishopOne`);
             }else{
                 img.setAttribute('data-piece', `bishopTwo`);
@@ -219,8 +219,8 @@ function addPieces(){
 
     // const temp= document.createElement('img');
     // temp.setAttribute('src', 'Chess_pdt60.png');
+    // temp.setAttribute('data-piece', `pawnOne`);
     // temp.classList.add('black');
     // temp.classList.add('pawn');
-    // sudoku.querySelector('#a2').removeChild(sudoku.querySelector('#a2').firstElementChild);
     // sudoku.querySelector('#a2').appendChild(temp);
 }
