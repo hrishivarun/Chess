@@ -37,6 +37,11 @@ sudoku.addEventListener('click', (e) => {
 
 
 
+
+
+
+
+
 //logic for potential moves, for any selected white piece, at a given moment
 sudoku.addEventListener('click', (e) => {
 

@@ -58,6 +58,11 @@ function legalPawnMoves(position, colorOfOpposition, potentialPositions){
 
 
 
+
+
+
+
+
 //for KNIGHT
 function legalKnightMoves(position, colorOfOpposition, potentialPositions){
     if((position.charCodeAt(0) + 2)<=104&&(position.charCodeAt(1) + 1)<=56){
@@ -110,6 +115,12 @@ function legalKnightMoves(position, colorOfOpposition, potentialPositions){
         }
     }
 }
+
+
+
+
+
+
 
 
 
@@ -190,6 +201,11 @@ function legalBishopMoves(position, colorOfOpposition, potentialPositions){
 
 
 
+
+
+
+
+
 //for ROOK
 function legalRookMoves(position, colorOfOpposition, potentialPositions){
     if(position[1]<'8'){
@@ -265,11 +281,21 @@ function legalRookMoves(position, colorOfOpposition, potentialPositions){
 
 
 
+
+
+
+
+
 //for QUEEN
 function legalQueenMoves(position, colorOfOpposition, potentialPositions){
     legalBishopMoves(position, colorOfOpposition, potentialPositions);
     legalRookMoves(position, colorOfOpposition, potentialPositions);
 }
+
+
+
+
+
 
 
 

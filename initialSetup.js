@@ -54,6 +54,11 @@ const piecesBlack= {
 
 
 
+
+
+
+
+
 //calculating potential position for every White Piece before starting the game
 Object.entries(piecesWhite).forEach(piece => {
     if(piece[1].pieceType=== 'pawn'){
@@ -91,6 +96,11 @@ Object.entries(piecesBlack).forEach(piece => {
         legalKingMoves(piece[1].position, 'white', piece[1].potentialPositions);
     }
 });
+
+
+
+
+
 
 
 

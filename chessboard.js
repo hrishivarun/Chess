@@ -1,32 +1,5 @@
 //create a chess board
-createBoard();
-//add all the chess pieces on the board
-addPieces();
-const sudoku= document.querySelector('#sudoku');
-
-//indicating which chess square you're currently hovering over
-sudoku.addEventListener('mouseover', (e) => {
-    if(e.target.matches('.odd')||e.target.matches('.even')){
-        e.target.classList.add('hover');
-    }else if(e.target.matches('img')){
-        if(e.target.parentElement.matches('.odd')||e.target.parentElement.matches('.even'))
-        e.target.parentElement.classList.add('hover');
-    }
-})
-//remove the indication, when mouse pointer moved away from the chess square its currently hovering over
-sudoku.addEventListener('mouseout', (e) => {
-    if(e.target.matches('.odd')||e.target.matches('.even')){
-        e.target.classList.remove('hover');
-    }else if(e.target.matches('img')){
-        if(e.target.parentElement.matches('.odd')||e.target.parentElement.matches('.even'))
-        e.target.parentElement.classList.remove('hover');
-    }
-})
-
-
-
-
-function createBoard(){
+(function(){
     const sudoku=document.getElementById('sudoku');
     for(let i=0; i<8; i++){
         for(let j=0; j<8; j++){
@@ -41,12 +14,19 @@ function createBoard(){
             sudoku.appendChild(innerContent);
         }
     }      
-}
+})();
 
 
 
 
-function addPieces(){
+
+
+
+
+
+
+//add all the chess pieces on the board
+(function(){
     const sudoku=document.getElementById('sudoku');
     for(let i=1; i<=64; i++){
         if(i==1|| i==8){
@@ -223,4 +203,34 @@ function addPieces(){
     // temp.classList.add('black');
     // temp.classList.add('pawn');
     // sudoku.querySelector('#a2').appendChild(temp);
-}
+})();
+
+
+
+
+
+
+
+
+
+
+const sudoku= document.querySelector('#sudoku');
+
+//indicating which chess square you're currently hovering over
+sudoku.addEventListener('mouseover', (e) => {
+    if(e.target.matches('.odd')||e.target.matches('.even')){
+        e.target.classList.add('hover');
+    }else if(e.target.matches('img')){
+        if(e.target.parentElement.matches('.odd')||e.target.parentElement.matches('.even'))
+        e.target.parentElement.classList.add('hover');
+    }
+});
+//remove the indication, when mouse pointer moved away from the chess square its currently hovering over
+sudoku.addEventListener('mouseout', (e) => {
+    if(e.target.matches('.odd')||e.target.matches('.even')){
+        e.target.classList.remove('hover');
+    }else if(e.target.matches('img')){
+        if(e.target.parentElement.matches('.odd')||e.target.parentElement.matches('.even'))
+        e.target.parentElement.classList.remove('hover');
+    }
+});
