@@ -22,6 +22,9 @@ function legalPawnMoves(position, colorOfOpposition, potentialPositions){
         for(let i=0; i<pawnUpPosition.length; i++){
             if(pawnUpPosition[i].childElementCount){
                 if(pawnUpPosition[i].querySelector('img').matches(`.${colorOfOpposition}`)){
+                    if(pawnUpPosition[i].querySelector('img').matches('.king')){
+                        blackChecked= true;
+                    }
                     potentialPositions.push(pawnUpPosition[i]);
                 }
             }
@@ -47,6 +50,9 @@ function legalPawnMoves(position, colorOfOpposition, potentialPositions){
         for(let i=0; i<pawnUpPosition.length; i++){
             if(pawnUpPosition[i].childElementCount){
                 if(pawnUpPosition[i].querySelector('img').matches(`.${colorOfOpposition}`)){
+                    if(pawnUpPosition[i].querySelector('img').matches('.king')){
+                        whiteChecked= true;
+                    }
                     potentialPositions.push(pawnUpPosition[i]);
                 }
             }
@@ -68,24 +74,60 @@ function legalKnightMoves(position, colorOfOpposition, potentialPositions){
     if((position.charCodeAt(0) + 2)<=104&&(position.charCodeAt(1) + 1)<=56){
         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 2)}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
         if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+            if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(potentialPosition.querySelector('img').matches('.king')){
+                    if(colorOfOpposition== 'white'){
+                        whiteChecked= true;
+                    }else if(colorOfOpposition== 'black'){
+                        blackChecked= true;
+                    }
+                }
+            }
             potentialPositions.push(potentialPosition);
         }
     }
     if((position.charCodeAt(0) + 2)<=104&&(position.charCodeAt(1) - 1)>=49){
         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 2)}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
         if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+            if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(potentialPosition.querySelector('img').matches('.king')){
+                    if(colorOfOpposition== 'white'){
+                        whiteChecked= true;
+                    }else if(colorOfOpposition== 'black'){
+                        blackChecked= true;
+                    }
+                }
+            }
             potentialPositions.push(potentialPosition);
         }
     }
     if((position.charCodeAt(0) - 2)>=97&&(position.charCodeAt(1) + 1)<=56){
         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 2)}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
         if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+            if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(potentialPosition.querySelector('img').matches('.king')){
+                    if(colorOfOpposition== 'white'){
+                        whiteChecked= true;
+                    }else if(colorOfOpposition== 'black'){
+                        blackChecked= true;
+                    }
+                }
+            }
             potentialPositions.push(potentialPosition);
         }
     }
     if((position.charCodeAt(0) - 2)>=97&&(position.charCodeAt(1) - 1)>=49){
         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 2)}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
         if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+            if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(potentialPosition.querySelector('img').matches('.king')){
+                    if(colorOfOpposition== 'white'){
+                        whiteChecked= true;
+                    }else if(colorOfOpposition== 'black'){
+                        blackChecked= true;
+                    }
+                }
+            }
             potentialPositions.push(potentialPosition);
         }
     }
@@ -93,24 +135,60 @@ function legalKnightMoves(position, colorOfOpposition, potentialPositions){
     if((position.charCodeAt(0) + 1)<=104&&(position.charCodeAt(1) + 2)<=56){
         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) + 2)}`);
         if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+            if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(potentialPosition.querySelector('img').matches('.king')){
+                    if(colorOfOpposition== 'white'){
+                        whiteChecked= true;
+                    }else if(colorOfOpposition== 'black'){
+                        blackChecked= true;
+                    }
+                }
+            }
             potentialPositions.push(potentialPosition);
         }
     }
     if((position.charCodeAt(0) + 1)<=104&&(position.charCodeAt(1) - 2)>=49){
         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) - 2)}`);
         if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+            if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(potentialPosition.querySelector('img').matches('.king')){
+                    if(colorOfOpposition== 'white'){
+                        whiteChecked= true;
+                    }else if(colorOfOpposition== 'black'){
+                        blackChecked= true;
+                    }
+                }
+            }
             potentialPositions.push(potentialPosition);
         }
     }
     if((position.charCodeAt(0) - 1)>=97&&(position.charCodeAt(1) + 2)<=56){
         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) + 2)}`);
         if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+            if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(potentialPosition.querySelector('img').matches('.king')){
+                    if(colorOfOpposition== 'white'){
+                        whiteChecked= true;
+                    }else if(colorOfOpposition== 'black'){
+                        blackChecked= true;
+                    }
+                }
+            }
             potentialPositions.push(potentialPosition);
         }
     }
     if((position.charCodeAt(0) - 1)>=97&&(position.charCodeAt(1) - 2)>=49){
         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) - 2)}`);
         if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+            if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(potentialPosition.querySelector('img').matches('.king')){
+                    if(colorOfOpposition== 'white'){
+                        whiteChecked= true;
+                    }else if(colorOfOpposition== 'black'){
+                        blackChecked= true;
+                    }
+                }
+            }
             potentialPositions.push(potentialPosition);
         }
     }
@@ -135,6 +213,13 @@ function legalBishopMoves(position, colorOfOpposition, potentialPositions){
         ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`))){
             potentialPositions.push(potentialPosition);
             if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(potentialPositionId.querySelector('img').matches('.king')){
+                    if(colorOfOpposition== 'white'){
+                        whiteChecked= true;
+                    }else if(colorOfOpposition== 'black'){
+                        blackChecked= true;
+                    }
+                }
                 break;
             }
             if(potentialPositionId[0]=='h'||potentialPositionId[1]=='8'){
@@ -152,6 +237,13 @@ function legalBishopMoves(position, colorOfOpposition, potentialPositions){
         ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`))){
             potentialPositions.push(potentialPosition);
             if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(potentialPositionId.querySelector('img').matches('.king')){
+                    if(colorOfOpposition== 'white'){
+                        whiteChecked= true;
+                    }else if(colorOfOpposition== 'black'){
+                        blackChecked= true;
+                    }
+                }
                 break;
             }
             if(potentialPositionId[0]=='h'||potentialPositionId[1]=='1'){
@@ -169,6 +261,13 @@ function legalBishopMoves(position, colorOfOpposition, potentialPositions){
         ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`))){
             potentialPositions.push(potentialPosition);
             if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(potentialPositionId.querySelector('img').matches('.king')){
+                    if(colorOfOpposition== 'white'){
+                        whiteChecked= true;
+                    }else if(colorOfOpposition== 'black'){
+                        blackChecked= true;
+                    }
+                }
                 break;
             }
             if(potentialPositionId[0]=='a'||potentialPositionId[1]=='1'){
@@ -186,6 +285,13 @@ function legalBishopMoves(position, colorOfOpposition, potentialPositions){
         ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`))){
             potentialPositions.push(potentialPosition);
             if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(potentialPositionId.querySelector('img').matches('.king')){
+                    if(colorOfOpposition== 'white'){
+                        whiteChecked= true;
+                    }else if(colorOfOpposition== 'black'){
+                        blackChecked= true;
+                    }
+                }
                 break;
             }
             if(potentialPositionId[0]=='a'||potentialPositionId[1]=='8'){
@@ -215,6 +321,13 @@ function legalRookMoves(position, colorOfOpposition, potentialPositions){
         ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`))){
             potentialPositions.push(potentialPosition);
             if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(potentialPositionId.querySelector('img').matches('.king')){
+                    if(colorOfOpposition== 'white'){
+                        whiteChecked= true;
+                    }else if(colorOfOpposition== 'black'){
+                        blackChecked= true;
+                    }
+                }
                 break;
             }
             if(potentialPositionId[1]=='8'){
@@ -232,6 +345,13 @@ function legalRookMoves(position, colorOfOpposition, potentialPositions){
         ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`))){
             potentialPositions.push(potentialPosition);
             if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(potentialPositionId.querySelector('img').matches('.king')){
+                    if(colorOfOpposition== 'white'){
+                        whiteChecked= true;
+                    }else if(colorOfOpposition== 'black'){
+                        blackChecked= true;
+                    }
+                }
                 break;
             }
             if(potentialPositionId[0]=='h'){
@@ -249,6 +369,13 @@ function legalRookMoves(position, colorOfOpposition, potentialPositions){
         ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`))){
             potentialPositions.push(potentialPosition);
             if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(potentialPositionId.querySelector('img').matches('.king')){
+                    if(colorOfOpposition== 'white'){
+                        whiteChecked= true;
+                    }else if(colorOfOpposition== 'black'){
+                        blackChecked= true;
+                    }
+                }
                 break;
             }
             if(potentialPositionId[1]=='1'){
@@ -266,6 +393,13 @@ function legalRookMoves(position, colorOfOpposition, potentialPositions){
         ||(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`))){
             potentialPositions.push(potentialPosition);
             if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(potentialPositionId.querySelector('img').matches('.king')){
+                    if(colorOfOpposition== 'white'){
+                        whiteChecked= true;
+                    }else if(colorOfOpposition== 'black'){
+                        blackChecked= true;
+                    }
+                }
                 break;
             }
             if(potentialPositionId[0]=='a'){
