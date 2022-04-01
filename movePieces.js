@@ -128,39 +128,7 @@ sudoku.addEventListener('click', (e) => {
 
 
         //update 'potential-positions' for every piece onboard, after one move
-        Object.entries(piecesWhite).forEach(piece => {
-            piece[1].potentialPositions= [];
-            if(piece[1].pieceType=== 'pawn'){
-                legalPawnMoves(piece[1].position, 'black', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'knight'){
-                legalKnightMoves(piece[1].position, 'black', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'bishop'){
-                legalBishopMoves(piece[1].position, 'black', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'rook'){
-                legalRookMoves(piece[1].position, 'black', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'queen'){
-                legalQueenMoves(piece[1].position, 'black', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'king'){
-                legalKingMoves(piece[1].position, 'black', piece[1].potentialPositions);
-            }
-        });
-
-        Object.entries(piecesBlack).forEach(piece => {
-            piece[1].potentialPositions= [];
-            if(piece[1].pieceType=== 'pawn'){
-                legalPawnMoves(piece[1].position, 'white', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'knight'){
-                legalKnightMoves(piece[1].position, 'white', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'bishop'){
-                legalBishopMoves(piece[1].position, 'white', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'rook'){
-                legalRookMoves(piece[1].position, 'white', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'queen'){
-                legalQueenMoves(piece[1].position, 'white', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'king'){
-                legalKingMoves(piece[1].position, 'white', piece[1].potentialPositions);
-            }
-        });
+        updatePotentialPositions();
 
 
 
@@ -325,39 +293,7 @@ sudoku.addEventListener('click', (e) => {
 
 
         //update 'potential-positions' for every piece onboard, after one move
-        Object.entries(piecesWhite).forEach(piece => {
-            piece[1].potentialPositions= [];
-            if(piece[1].pieceType=== 'pawn'){
-                legalPawnMoves(piece[1].position, 'black', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'knight'){
-                legalKnightMoves(piece[1].position, 'black', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'bishop'){
-                legalBishopMoves(piece[1].position, 'black', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'rook'){
-                legalRookMoves(piece[1].position, 'black', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'queen'){
-                legalQueenMoves(piece[1].position, 'black', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'king'){
-                legalKingMoves(piece[1].position, 'black', piece[1].potentialPositions);
-            }
-        });
-
-        Object.entries(piecesBlack).forEach(piece => {
-            piece[1].potentialPositions= [];
-            if(piece[1].pieceType=== 'pawn'){
-                legalPawnMoves(piece[1].position, 'white', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'knight'){
-                legalKnightMoves(piece[1].position, 'white', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'bishop'){
-                legalBishopMoves(piece[1].position, 'white', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'rook'){
-                legalRookMoves(piece[1].position, 'white', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'queen'){
-                legalQueenMoves(piece[1].position, 'white', piece[1].potentialPositions);
-            }else if(piece[1].pieceType== 'king'){
-                legalKingMoves(piece[1].position, 'white', piece[1].potentialPositions);
-            }
-        });
+        updatePotentialPositions();
 
 
 

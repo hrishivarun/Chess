@@ -14,7 +14,7 @@ sudoku.addEventListener('click', (e) => {
 
                 //get piece name
                 const piece= selectedPiece.getAttribute('data-piece');
-
+                console.log(piece);
                 //highlighting potential future positions when a piece is selected
                 if(selectedSquare.matches('.selected')){
                     piecesWhite[piece].potentialPositions.forEach(position =>{

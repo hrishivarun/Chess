@@ -54,48 +54,10 @@ const piecesBlack= {
 
 
 
+const potentialPositionIdsWhite= [];
+const potentialPositionIdsBlack= [];
 
-
-
-
-
-//calculating potential position for every White Piece before starting the game
-Object.entries(piecesWhite).forEach(piece => {
-    if(piece[1].pieceType=== 'pawn'){
-        legalPawnMoves(piece[1].position, 'black', piece[1].potentialPositions);
-    }else if(piece[1].pieceType== 'knight'){
-        legalKnightMoves(piece[1].position, 'black', piece[1].potentialPositions);
-    }else if(piece[1].pieceType== 'bishop'){
-        legalBishopMoves(piece[1].position, 'black', piece[1].potentialPositions);
-    }else if(piece[1].pieceType== 'rook'){
-        legalRookMoves(piece[1].position, 'black', piece[1].potentialPositions);
-    }else if(piece[1].pieceType== 'queen'){
-        legalQueenMoves(piece[1].position, 'black', piece[1].potentialPositions);
-    }else if(piece[1].pieceType== 'king'){
-        legalKingMoves(piece[1].position, 'black', piece[1].potentialPositions);
-    }
-});
-
-
-
-
-
-//calculating potential position for every Black Piece before starting the game
-Object.entries(piecesBlack).forEach(piece => {
-    if(piece[1].pieceType=== 'pawn'){
-        legalPawnMoves(piece[1].position, 'white', piece[1].potentialPositions);
-    }else if(piece[1].pieceType== 'knight'){
-        legalKnightMoves(piece[1].position, 'white', piece[1].potentialPositions);
-    }else if(piece[1].pieceType== 'bishop'){
-        legalBishopMoves(piece[1].position, 'white', piece[1].potentialPositions);
-    }else if(piece[1].pieceType== 'rook'){
-        legalRookMoves(piece[1].position, 'white', piece[1].potentialPositions);
-    }else if(piece[1].pieceType== 'queen'){
-        legalQueenMoves(piece[1].position, 'white', piece[1].potentialPositions);
-    }else if(piece[1].pieceType== 'king'){
-        legalKingMoves(piece[1].position, 'white', piece[1].potentialPositions);
-    }
-});
+updatePotentialPositions();
 
 
 
@@ -115,6 +77,10 @@ let selectedPiece= null;
 //initially neither White's or Black's King is in check
 let whiteChecked= false;
 let blackChecked= false;
+
+//
+let blackChecker= [];
+let whiteChecker= [];
 
 //initially no extra queen on board from either side
 let extraWhiteQueenCount= 0;
