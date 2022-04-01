@@ -1,50 +1,54 @@
-function updatePotentialPositions(){
-    //calculating potential position for every White Piece
-    Object.entries(piecesWhite).forEach(piece => {
-        piece[1].potentialPositions= [];
-        if(piece[1].pieceType=== 'pawn'){
-            legalPawnMoves(piece[1].position, 'black', piece[1].potentialPositions);
-        }else if(piece[1].pieceType== 'knight'){
-            legalKnightMoves(piece[1].position, 'black', piece[1].potentialPositions);
-        }else if(piece[1].pieceType== 'bishop'){
-            legalBishopMoves(piece[1].position, 'black', piece[1].potentialPositions);
-        }else if(piece[1].pieceType== 'rook'){
-            legalRookMoves(piece[1].position, 'black', piece[1].potentialPositions);
-        }else if(piece[1].pieceType== 'queen'){
-            legalQueenMoves(piece[1].position, 'black', piece[1].potentialPositions);
-        }else if(piece[1].pieceType== 'king'){
-            legalKingMoves(piece[1].position, 'black', piece[1].potentialPositions);
+function pushChecker(position, colorOfOpposition){
+    const checker= sudoku.querySelector(`#${position}`).querySelector('img').getAttribute('data-piece');
+    if(colorOfOpposition== 'black'){
+        blackChecked= true;
+        blackChecker.push(piecesWhite[checker]);
+    }
+    else if(colorOfOpposition== 'white'){
+        whiteChecked= true;
+        whiteChecker.push(piecesBlack[checker]);
+    }
+}
+
+
+
+
+
+function canBlockCheck(positionId, colorOfOpposition){
+    if(colorOfOpposition== 'black'){
+        if(positionId == whiteChecker[0]['position']){
+            return true;
         }
-
-        piece[1].potentialPositions.forEach(potentialPosition => {
-            potentialPositionIdsWhite.push(potentialPosition.getAttribute('id'));
+        whiteChecker[0]['potentialPositions'].forEach( square => {
+            const checkerPotentialPosition= square.getAttribute('id');
+            if(positionId == checkerPotentialPosition){
+                console.log(positionId, checkerPotentialPosition);
+                return true;
+            }
         });
-    });
-
-
-
-
-
-    //calculating potential position for every Black Piece
-    Object.entries(piecesBlack).forEach(piece => {
-        piece[1].potentialPositions= [];
-
-        if(piece[1].pieceType=== 'pawn'){
-            legalPawnMoves(piece[1].position, 'white', piece[1].potentialPositions);
-        }else if(piece[1].pieceType== 'knight'){
-            legalKnightMoves(piece[1].position, 'white', piece[1].potentialPositions);
-        }else if(piece[1].pieceType== 'bishop'){
-            legalBishopMoves(piece[1].position, 'white', piece[1].potentialPositions);
-        }else if(piece[1].pieceType== 'rook'){
-            legalRookMoves(piece[1].position, 'white', piece[1].potentialPositions);
-        }else if(piece[1].pieceType== 'queen'){
-            legalQueenMoves(piece[1].position, 'white', piece[1].potentialPositions);
-        }else if(piece[1].pieceType== 'king'){
-            legalKingMoves(piece[1].position, 'white', piece[1].potentialPositions);
+    }
+    else if(colorOfOpposition== 'white'){
+        if(positionId == blackChecker[0]['position']){
+            return true;
         }
-        
-        piece[1].potentialPositions.forEach(potentialPosition => {
-            potentialPositionIdsBlack.push(potentialPosition.getAttribute('id'));
+        blackChecker[0]['potentialPositions'].forEach( square => {
+            const checkerPotentialPosition= square.getAttribute('id');
+            if(positionId == checkerPotentialPosition){
+                return true;
+            }
         });
+    }
+}
+
+
+
+
+
+function filterPositionsIfChecked(potentialPositions, tempPotentialPositions){
+    while(potentialPositions.length){
+        potentialPositions.pop();
+    }
+    tempPotentialPositions.forEach(blockingPosition => {
+        potentialPositions.push(blockingPosition);
     });
 }

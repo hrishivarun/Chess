@@ -1,19 +1,3 @@
-function pushChecker(position, colorOfOpposition){
-    const checker= sudoku.querySelector(`#${position}`).querySelector('img').getAttribute('data-piece');
-    if(colorOfOpposition== 'black'){
-        blackChecked= true;
-        blackChecker.push(piecesWhite[checker]);
-    }
-    else if(colorOfOpposition== 'white'){
-        whiteChecked= true;
-        whiteChecker.push(piecesBlack[checker]);
-    }
-}
-
-
-
-
-
 //functions for calculating legal moves given any piece
 //for PAWNS
 function legalPawnMoves(position, colorOfOpposition, potentialPositions){
@@ -175,6 +159,136 @@ function legalKnightMoves(position, colorOfOpposition, potentialPositions){
                 }
             }
             potentialPositions.push(potentialPosition);
+        }
+    }
+    
+    if(colorOfOpposition== 'black' && whiteChecked== true){
+        if(whiteChecker.length== 2){
+            potentialPositions= [];
+        }
+        else if(whiteChecker.length== 1 && whiteChecker[0]['pieceType']!= ('pawn' || 'knight')){
+            if(whiteChecker[0].position[0]> piecesWhite['kingWhite'].position[0] && whiteChecker[0].position[1]> piecesWhite['kingWhite'].position[1]){
+                const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
+                    const positionId= checkBlockingPosition.getAttribute('id');
+                    if((positionId[0]> piecesWhite['kingWhite'].position[0] && positionId[1]> piecesWhite['kingWhite'].position[1]) &&
+                    (positionId[0]<= whiteChecker[0].position[0] && positionId[1]<= whiteChecker[0].position[1])){
+                        return canBlockCheck(positionId, colorOfOpposition);
+                    }
+                    else{
+                        return false;
+                    }
+                });
+                
+                filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
+            }
+            else if(whiteChecker[0].position[0]> piecesWhite['kingWhite'].position[0] && whiteChecker[0].position[1]< piecesWhite['kingWhite'].position[1]){
+                const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
+                    const positionId= checkBlockingPosition.getAttribute('id');
+                    if((positionId[0]> piecesWhite['kingWhite'].position[0] && positionId[1]< piecesWhite['kingWhite'].position[1]) &&
+                    (positionId[0]<= whiteChecker[0].position[0] && positionId[1]>= whiteChecker[0].position[1])){
+                        return canBlockCheck(positionId, colorOfOpposition);
+                    }
+                    else{
+                        return false;
+                    }
+                });
+                console.log(tempPotentialPositions);
+                filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
+            }
+            else if(whiteChecker[0].position[0]< piecesWhite['kingWhite'].position[0] && whiteChecker[0].position[1]< piecesWhite['kingWhite'].position[1]){
+                const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
+                    const positionId= checkBlockingPosition.getAttribute('id');
+                    if((positionId[0]< piecesWhite['kingWhite'].position[0] && positionId[1]< piecesWhite['kingWhite'].position[1]) &&
+                    (positionId[0]>= whiteChecker[0].position[0] && positionId[1]>= whiteChecker[0].position[1])){
+                        return canBlockCheck(positionId, colorOfOpposition);
+                    }
+                    else{
+                        return false;
+                    }
+                });
+                console.log(tempPotentialPositions);
+                filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
+            }
+            else if(whiteChecker[0].position[0]== piecesWhite['kingWhite'].position[0] && whiteChecker[0].position[1]> piecesWhite['kingWhite'].position[1]){
+                const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
+                    const positionId= checkBlockingPosition.getAttribute('id');
+                    if((positionId[0]== piecesWhite['kingWhite'].position[0] && positionId[1]> piecesWhite['kingWhite'].position[1]) &&
+                    (positionId[0]== whiteChecker[0].position[0] && positionId[1]<= whiteChecker[0].position[1])){
+                        return canBlockCheck(positionId, colorOfOpposition);
+                    }
+                    else{
+                        return false;
+                    }
+                });
+                console.log(tempPotentialPositions);
+                filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
+            }
+
+            else if(whiteChecker[0].position[0]> piecesWhite['kingWhite'].position[0] && whiteChecker[0].position[1]== piecesWhite['kingWhite'].position[1]){
+                const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
+                    const positionId= checkBlockingPosition.getAttribute('id');
+                    if((positionId[0]> piecesWhite['kingWhite'].position[0] && positionId[1]== piecesWhite['kingWhite'].position[1]) &&
+                    (positionId[0]<= whiteChecker[0].position[0] && positionId[1]== whiteChecker[0].position[1])){
+                        return canBlockCheck(positionId, colorOfOpposition);
+                    }
+                    else{
+                        return false;
+                    }
+                });
+                console.log(tempPotentialPositions);
+                filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
+            }else if(whiteChecker[0].position[0]== piecesWhite['kingWhite'].position[0] && whiteChecker[0].position[1]< piecesWhite['kingWhite'].position[1]){
+                const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
+                    const positionId= checkBlockingPosition.getAttribute('id');
+                    if((positionId[0]== piecesWhite['kingWhite'].position[0] && positionId[1]< piecesWhite['kingWhite'].position[1]) &&
+                    (positionId[0]== whiteChecker[0].position[0] && positionId[1]>= whiteChecker[0].position[1])){
+                        return canBlockCheck(positionId, colorOfOpposition);
+                    }
+                    else{
+                        return false;
+                    }
+                });
+                console.log(tempPotentialPositions);
+                filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
+            }else if(whiteChecker[0].position[0]< piecesWhite['kingWhite'].position[0] && whiteChecker[0].position[1]== piecesWhite['kingWhite'].position[1]){
+                const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
+                    const positionId= checkBlockingPosition.getAttribute('id');
+                    if((positionId[0]< piecesWhite['kingWhite'].position[0] && positionId[1]== piecesWhite['kingWhite'].position[1]) &&
+                    (positionId[0]>= whiteChecker[0].position[0] && positionId[1]== whiteChecker[0].position[1])){
+                        return canBlockCheck(positionId, colorOfOpposition);
+                    }
+                    else{
+                        return false;
+                    }
+                });
+                console.log(tempPotentialPositions);
+                filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
+            }else if(whiteChecker[0].position[0]<= piecesWhite['kingWhite'].position[0] && whiteChecker[0].position[1]>= piecesWhite['kingWhite'].position[1]){
+                const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
+                    const positionId= checkBlockingPosition.getAttribute('id');
+                    if((positionId[0]< piecesWhite['kingWhite'].position[0] && positionId[1]> piecesWhite['kingWhite'].position[1]) &&
+                    (positionId[0]>= whiteChecker[0].position[0] && positionId[1]<= whiteChecker[0].position[1])){
+                        return canBlockCheck(positionId, colorOfOpposition);
+                    }
+                    else{
+                        return false;
+                    }
+                });
+                console.log(tempPotentialPositions);
+                filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
+            }
+        }
+    }
+    else if(colorOfOpposition== 'white' && blackChecked== true){
+        if(blackChecker.length== 2){
+            potentialPositions= [];
+        }
+        else if(blackChecker.length== 1){
+            potentialPositions.filter( position => {
+                if(position){
+    
+                }
+            });
         }
     }
 }

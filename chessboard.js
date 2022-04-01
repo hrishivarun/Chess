@@ -108,55 +108,55 @@
             img.classList.add('bishop');
             div.appendChild(img);
         }else if(i==9||i==10||i==11||i==12||i==13||i==14||i==15||i==16){
-            const div= sudoku.querySelector(`div:nth-child(${i})`);
-            const img= document.createElement('img');
-            img.setAttribute('src', 'Chess_pdt60.png');
-            img.setAttribute('alt', 'Black Pawn');
-            if(i==9){
-                img.setAttribute('data-piece', `pawnOne`);
-            }else if(i==10){
-                img.setAttribute('data-piece', `pawnTwo`);
-            }else if(i==11){
-                img.setAttribute('data-piece', `pawnThree`);
-            }else if(i==12){
-                img.setAttribute('data-piece', `pawnFour`);
-            }else if(i==13){
-                img.setAttribute('data-piece', `pawnFive`);
-            }else if(i==14){
-                img.setAttribute('data-piece', `pawnSix`);
-            }else if(i==15){
-                img.setAttribute('data-piece', `pawnSeven`);
-            }else if(i==16){
-                img.setAttribute('data-piece', `pawnEight`);
-            }
-            img.classList.add('black');
-            img.classList.add('pawn');
-            div.appendChild(img);
+            // const div= sudoku.querySelector(`div:nth-child(${i})`);
+            // const img= document.createElement('img');
+            // img.setAttribute('src', 'Chess_pdt60.png');
+            // img.setAttribute('alt', 'Black Pawn');
+            // if(i==9){
+            //     img.setAttribute('data-piece', `pawnOne`);
+            // }else if(i==10){
+            //     img.setAttribute('data-piece', `pawnTwo`);
+            // }else if(i==11){
+            //     img.setAttribute('data-piece', `pawnThree`);
+            // }else if(i==12){
+            //     img.setAttribute('data-piece', `pawnFour`);
+            // }else if(i==13){
+            //     img.setAttribute('data-piece', `pawnFive`);
+            // }else if(i==14){
+            //     img.setAttribute('data-piece', `pawnSix`);
+            // }else if(i==15){
+            //     img.setAttribute('data-piece', `pawnSeven`);
+            // }else if(i==16){
+            //     img.setAttribute('data-piece', `pawnEight`);
+            // }
+            // img.classList.add('black');
+            // img.classList.add('pawn');
+            // div.appendChild(img);
         }else if(i==49||i==50||i==51||i==52||i==53||i==54||i==55||i==56){
-            const div= sudoku.querySelector(`div:nth-child(${i})`);
-            const img= document.createElement('img');
-            img.setAttribute('src', 'Chess_plt60.png');
-            img.setAttribute('alt', 'White Pawn');
-            if(i==49){
-                img.setAttribute('data-piece', `pawnOne`);
-            }else if(i==50){
-                img.setAttribute('data-piece', `pawnTwo`);
-            }else if(i==51){
-                img.setAttribute('data-piece', `pawnThree`);
-            }else if(i==52){
-                img.setAttribute('data-piece', `pawnFour`);
-            }else if(i==53){
-                img.setAttribute('data-piece', `pawnFive`);
-            }else if(i==54){
-                img.setAttribute('data-piece', `pawnSix`);
-            }else if(i==55){
-                img.setAttribute('data-piece', `pawnSeven`);
-            }else if(i==56){
-                img.setAttribute('data-piece', `pawnEight`);
-            }
-            img.classList.add('white');
-            img.classList.add('pawn');
-            div.appendChild(img);       
+            // const div= sudoku.querySelector(`div:nth-child(${i})`);
+            // const img= document.createElement('img');
+            // img.setAttribute('src', 'Chess_plt60.png');
+            // img.setAttribute('alt', 'White Pawn');
+            // if(i==49){
+            //     img.setAttribute('data-piece', `pawnOne`);
+            // }else if(i==50){
+            //     img.setAttribute('data-piece', `pawnTwo`);
+            // }else if(i==51){
+            //     img.setAttribute('data-piece', `pawnThree`);
+            // }else if(i==52){
+            //     img.setAttribute('data-piece', `pawnFour`);
+            // }else if(i==53){
+            //     img.setAttribute('data-piece', `pawnFive`);
+            // }else if(i==54){
+            //     img.setAttribute('data-piece', `pawnSix`);
+            // }else if(i==55){
+            //     img.setAttribute('data-piece', `pawnSeven`);
+            // }else if(i==56){
+            //     img.setAttribute('data-piece', `pawnEight`);
+            // }
+            // img.classList.add('white');
+            // img.classList.add('pawn');
+            // div.appendChild(img);       
         }else if(i==4){
             const div= sudoku.querySelector(`div:nth-child(${i})`);
             const img= document.createElement('img');

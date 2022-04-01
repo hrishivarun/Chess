@@ -57,8 +57,6 @@ const piecesBlack= {
 const potentialPositionIdsWhite= [];
 const potentialPositionIdsBlack= [];
 
-updatePotentialPositions();
-
 
 
 
