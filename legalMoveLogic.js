@@ -455,22 +455,21 @@ function legalKingMoves(position, colorOfOpposition, potentialPositions){
         }
     }
 
+    
     tempPotentialPositions= potentialPositions.filter(square => {
         let safePosition= true;
         const potentialPositionId= square.getAttribute('id');
         if(colorOfOpposition == 'white'){
             potentialPositionIdsWhite.forEach(potentialPosition => {
                 if(potentialPosition == potentialPositionId){
-                    console.log(potentialPosition, potentialPositionId);
                     safePosition= false;
                 }
             });  
         }
 
         else if(colorOfOpposition == 'black'){
-            console.log(potentialPositionIdsBlack);
+            console.log(potentialPositionIdsBlack.length);
             potentialPositionIdsBlack.forEach(potentialPosition => {
-                console.log(potentialPosition);
                 if(potentialPosition == potentialPositionId){
                     safePosition= false;
                 }
