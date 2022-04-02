@@ -1,4 +1,8 @@
 function updateWhitePositions(){
+    while(potentialPositionIdsWhite.length){
+        potentialPositionIdsWhite.pop();
+    }
+
     Object.entries(piecesWhite).forEach(piece => {
         piece[1].potentialPositions= [];
         if(piece[1].pieceType=== 'pawn'){
@@ -26,6 +30,10 @@ function updateWhitePositions(){
 
 
 function updateBlackPositions(){
+    while(potentialPositionIdsBlack.length){
+        potentialPositionIdsBlack.pop();
+    }
+
     Object.entries(piecesBlack).forEach(piece => {
         piece[1].potentialPositions= [];
 
