@@ -76,9 +76,14 @@ function blockCheck(colorOfOpposition, potentialPositions){
             if(whiteChecker[0].position[0]> piecesWhite['kingWhite'].position[0] && whiteChecker[0].position[1]> piecesWhite['kingWhite'].position[1]){
                 const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
                     const positionId= checkBlockingPosition.getAttribute('id');
-                    if((positionId[0]> piecesWhite['kingWhite'].position[0] && positionId[1]> piecesWhite['kingWhite'].position[1]) &&
-                    (positionId[0]<= whiteChecker[0].position[0] && positionId[1]<= whiteChecker[0].position[1])){
-                        return canBlockCheck(positionId, colorOfOpposition);
+                    if(positionId[0]> piecesWhite['kingWhite'].position[0] && positionId[1]> piecesWhite['kingWhite'].position[1]){
+                        if(positionId[0]< whiteChecker[0].position[0] && positionId[1]< whiteChecker[0].position[1]){
+                            return canBlockCheck(positionId, colorOfOpposition);
+                        }else if(positionId[0]== whiteChecker[0].position[0] && positionId[1]== whiteChecker[0].position[1]){
+                            return true;
+                        }else{
+                            return false;
+                        }
                     }
                     else{
                         return false;
@@ -92,9 +97,14 @@ function blockCheck(colorOfOpposition, potentialPositions){
             else if(whiteChecker[0].position[0]> piecesWhite['kingWhite'].position[0] && whiteChecker[0].position[1]< piecesWhite['kingWhite'].position[1]){
                 const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
                     const positionId= checkBlockingPosition.getAttribute('id');
-                    if((positionId[0]> piecesWhite['kingWhite'].position[0] && positionId[1]< piecesWhite['kingWhite'].position[1]) &&
-                    (positionId[0]<= whiteChecker[0].position[0] && positionId[1]>= whiteChecker[0].position[1])){
-                        return canBlockCheck(positionId, colorOfOpposition);
+                    if(positionId[0]> piecesWhite['kingWhite'].position[0] && positionId[1]< piecesWhite['kingWhite'].position[1]){
+                        if(positionId[0]< whiteChecker[0].position[0] && positionId[1]> whiteChecker[0].position[1]){
+                            return canBlockCheck(positionId, colorOfOpposition);
+                        }else if(positionId[0]== whiteChecker[0].position[0] && positionId[1]== whiteChecker[0].position[1]){
+                            return true;
+                        }else{
+                            return false;
+                        }
                     }
                     else{
                         return false;
@@ -108,9 +118,36 @@ function blockCheck(colorOfOpposition, potentialPositions){
             else if(whiteChecker[0].position[0]< piecesWhite['kingWhite'].position[0] && whiteChecker[0].position[1]< piecesWhite['kingWhite'].position[1]){
                 const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
                     const positionId= checkBlockingPosition.getAttribute('id');
-                    if((positionId[0]< piecesWhite['kingWhite'].position[0] && positionId[1]< piecesWhite['kingWhite'].position[1]) &&
-                    (positionId[0]>= whiteChecker[0].position[0] && positionId[1]>= whiteChecker[0].position[1])){
-                        return canBlockCheck(positionId, colorOfOpposition);
+                    console.log(positionId, colorOfOpposition);
+                    if(positionId[0]< piecesWhite['kingWhite'].position[0] && positionId[1]< piecesWhite['kingWhite'].position[1]){
+                        if(positionId[0]> whiteChecker[0].position[0] && positionId[1]> whiteChecker[0].position[1]){
+                            return canBlockCheck(positionId, colorOfOpposition);
+                        }else if(positionId[0]== whiteChecker[0].position[0] && positionId[1]== whiteChecker[0].position[1]){
+                            return true;
+                        }else{
+                            return false;
+                        }
+                    }
+                    else{
+                        return false;
+                    }
+                });
+
+                filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
+            }
+            
+            
+            else if(whiteChecker[0].position[0]< piecesWhite['kingWhite'].position[0] && whiteChecker[0].position[1]> piecesWhite['kingWhite'].position[1]){
+                const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
+                    const positionId= checkBlockingPosition.getAttribute('id');
+                    if(positionId[0]< piecesWhite['kingWhite'].position[0] && positionId[1]> piecesWhite['kingWhite'].position[1]){
+                        if(positionId[0]> whiteChecker[0].position[0] && positionId[1]< whiteChecker[0].position[1]){
+                            return canBlockCheck(positionId, colorOfOpposition);
+                        }else if(positionId[0]== whiteChecker[0].position[0] && positionId[1]== whiteChecker[0].position[1]){
+                            return true;
+                        }else{
+                            return false;
+                        }
                     }
                     else{
                         return false;
@@ -183,23 +220,6 @@ function blockCheck(colorOfOpposition, potentialPositions){
 
                 filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
             }
-            
-            
-            else if(whiteChecker[0].position[0]<= piecesWhite['kingWhite'].position[0] && whiteChecker[0].position[1]>= piecesWhite['kingWhite'].position[1]){
-                const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
-                    const positionId= checkBlockingPosition.getAttribute('id');
-                    if((positionId[0]< piecesWhite['kingWhite'].position[0] && positionId[1]> piecesWhite['kingWhite'].position[1]) &&
-                    (positionId[0]>= whiteChecker[0].position[0] && positionId[1]<= whiteChecker[0].position[1])){
-                        console.log(canBlockCheck(positionId, colorOfOpposition));
-                        return canBlockCheck(positionId, colorOfOpposition);
-                    }
-                    else{
-                        return false;
-                    }
-                });
-
-                filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
-            }
         }
     }
 
@@ -220,9 +240,14 @@ function blockCheck(colorOfOpposition, potentialPositions){
             if(blackChecker[0].position[0]> piecesBlack['kingBlack'].position[0] && blackChecker[0].position[1]> piecesBlack['kingBlack'].position[1]){
                 const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
                     const positionId= checkBlockingPosition.getAttribute('id');
-                    if((positionId[0]> piecesBlack['kingBlack'].position[0] && positionId[1]> piecesBlack['kingBlack'].position[1]) &&
-                    (positionId[0]<= blackChecker[0].position[0] && positionId[1]<= blackChecker[0].position[1])){
-                        return canBlockCheck(positionId, colorOfOpposition);
+                    if(positionId[0]> piecesBlack['kingBlack'].position[0] && positionId[1]> piecesBlack['kingBlack'].position[1]){
+                        if(positionId[0]<= blackChecker[0].position[0] && positionId[1]<= blackChecker[0].position[1]){
+                            return canBlockCheck(positionId, colorOfOpposition);
+                        }else if(positionId[0]== blackChecker[0].position[0] && positionId[1]== blackChecker[0].position[1]){
+                            return true;
+                        }else{
+                            return false;
+                        }
                     }
                     else{
                         return false;
@@ -236,9 +261,14 @@ function blockCheck(colorOfOpposition, potentialPositions){
             else if(blackChecker[0].position[0]> piecesBlack['kingBlack'].position[0] && blackChecker[0].position[1]< piecesBlack['kingBlack'].position[1]){
                 const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
                     const positionId= checkBlockingPosition.getAttribute('id');
-                    if((positionId[0]> piecesBlack['kingBlack'].position[0] && positionId[1]< piecesBlack['kingBlack'].position[1]) &&
-                    (positionId[0]<= blackChecker[0].position[0] && positionId[1]>= blackChecker[0].position[1])){
-                        return canBlockCheck(positionId, colorOfOpposition);
+                    if(positionId[0]> piecesBlack['kingBlack'].position[0] && positionId[1]< piecesBlack['kingBlack'].position[1]){
+                        if(positionId[0]< blackChecker[0].position[0] && positionId[1]> blackChecker[0].position[1]){
+                            return canBlockCheck(positionId, colorOfOpposition);
+                        }else if(positionId[0]== blackChecker[0].position[0] && positionId[1]== blackChecker[0].position[1]){
+                            return true;
+                        }else{
+                            return false;
+                        }
                     }
                     else{
                         return false;
@@ -252,9 +282,35 @@ function blockCheck(colorOfOpposition, potentialPositions){
             else if(blackChecker[0].position[0]< piecesBlack['kingBlack'].position[0] && blackChecker[0].position[1]< piecesBlack['kingBlack'].position[1]){
                 const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
                     const positionId= checkBlockingPosition.getAttribute('id');
-                    if((positionId[0]< piecesBlack['kingBlack'].position[0] && positionId[1]< piecesBlack['kingBlack'].position[1]) &&
-                    (positionId[0]>= blackChecker[0].position[0] && positionId[1]>= blackChecker[0].position[1])){
-                        return canBlockCheck(positionId, colorOfOpposition);
+                    if(positionId[0]< piecesBlack['kingBlack'].position[0] && positionId[1]< piecesBlack['kingBlack'].position[1]){
+                        if(positionId[0]> blackChecker[0].position[0] && positionId[1]> blackChecker[0].position[1]){
+                            return canBlockCheck(positionId, colorOfOpposition);
+                        }else if(positionId[0]== blackChecker[0].position[0] && positionId[1]== blackChecker[0].position[1]){
+                            return true;
+                        }else{
+                            return false;
+                        }
+                    }
+                    else{
+                        return false;
+                    }
+                });
+
+                filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
+            }
+            
+            
+            else if(blackChecker[0].position[0]< piecesBlack['kingBlack'].position[0] && blackChecker[0].position[1]> piecesBlack['kingBlack'].position[1]){
+                const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
+                    const positionId= checkBlockingPosition.getAttribute('id');
+                    if(positionId[0]< piecesBlack['kingBlack'].position[0] && positionId[1]> piecesBlack['kingBlack'].position[1]){
+                        if(positionId[0]> blackChecker[0].position[0] && positionId[1]< blackChecker[0].position[1]){
+                            return canBlockCheck(positionId, colorOfOpposition);
+                        }else if(positionId[0]== blackChecker[0].position[0] && positionId[1]== blackChecker[0].position[1]){
+                            return true;
+                        }else{
+                            return false;
+                        }
                     }
                     else{
                         return false;
@@ -312,22 +368,6 @@ function blockCheck(colorOfOpposition, potentialPositions){
                     const positionId= checkBlockingPosition.getAttribute('id');
                     if((positionId[0]< piecesBlack['kingBlack'].position[0] && positionId[1]== piecesBlack['kingBlack'].position[1]) &&
                     (positionId[0]>= blackChecker[0].position[0] && positionId[1]== blackChecker[0].position[1])){
-                        return canBlockCheck(positionId, colorOfOpposition);
-                    }
-                    else{
-                        return false;
-                    }
-                });
-
-                filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
-            }
-            
-            
-            else if(blackChecker[0].position[0]<= piecesBlack['kingBlack'].position[0] && blackChecker[0].position[1]>= piecesBlack['kingBlack'].position[1]){
-                const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
-                    const positionId= checkBlockingPosition.getAttribute('id');
-                    if((positionId[0]< piecesBlack['kingBlack'].position[0] && positionId[1]> piecesBlack['kingBlack'].position[1]) &&
-                    (positionId[0]>= blackChecker[0].position[0] && positionId[1]<= blackChecker[0].position[1])){
                         return canBlockCheck(positionId, colorOfOpposition);
                     }
                     else{
