@@ -19,9 +19,19 @@ function updateWhitePositions(){
             legalKingMoves(piece[1].position, 'black', piece[1].potentialPositions);
         }
 
-        piece[1].potentialPositions.forEach(potentialPosition => {
-            potentialPositionIdsWhite.push(potentialPosition.getAttribute('id'));
-        });
+        if(piece[1].pieceType != 'pawn'){
+            piece[1].potentialPositions.forEach(potentialPosition => {
+                    potentialPositionIdsWhite.push(potentialPosition.getAttribute('id'));
+            });
+        }
+        else{
+            if(piece[1].position[0]>'a'){
+                potentialPositionIdsWhite.push(`${String.fromCharCode(piece[1].position.charCodeAt(0) - 1)}${String.fromCharCode(piece[1].position.charCodeAt(1) + 1)}`);
+            }
+            if(piece[1].position[0]<'h'){
+                potentialPositionIdsWhite.push(`${String.fromCharCode(piece[1].position.charCodeAt(0) + 1)}${String.fromCharCode(piece[1].position.charCodeAt(1) + 1)}`);
+            }
+        }
     });
 }
 
@@ -50,10 +60,20 @@ function updateBlackPositions(){
         }else if(piece[1].pieceType== 'king'){
             legalKingMoves(piece[1].position, 'white', piece[1].potentialPositions);
         }
-        
-        piece[1].potentialPositions.forEach(potentialPosition => {
-            potentialPositionIdsBlack.push(potentialPosition.getAttribute('id'));
-        });
+
+        if(piece[1].pieceType != 'pawn'){
+            piece[1].potentialPositions.forEach(potentialPosition => {
+                potentialPositionIdsBlack.push(potentialPosition.getAttribute('id'));
+            });
+        }
+        else{
+            if(piece[1].position[0]>'a'){
+                potentialPositionIdsBlack.push(`${String.fromCharCode(piece[1].position.charCodeAt(0) - 1)}${String.fromCharCode(piece[1].position.charCodeAt(1) - 1)}`);
+            }
+            if(piece[1].position[0]<'h'){
+                potentialPositionIdsBlack.push(`${String.fromCharCode(piece[1].position.charCodeAt(0) + 1)}${String.fromCharCode(piece[1].position.charCodeAt(1) - 1)}`);
+            }
+        }
     });
 }
 
@@ -68,7 +88,6 @@ function updatePotentialPositions(){
 
         //calculating potential position for every Black Piece
         updateBlackPositions();
-        
     }
     else{
         //calculating potential position for every Black Piece
