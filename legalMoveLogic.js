@@ -460,7 +460,7 @@ function legalKingMoves(position, colorOfOpposition, potentialPositions){
         let safePosition= true;
         const potentialPositionId= square.getAttribute('id');
         if(colorOfOpposition == 'white'){
-            potentialPositionIdsWhite.forEach(potentialPosition => {
+            blockedPositionsForBlackKing.forEach(potentialPosition => {
                 if(potentialPosition == potentialPositionId){
                     safePosition= false;
                 }
@@ -468,8 +468,7 @@ function legalKingMoves(position, colorOfOpposition, potentialPositions){
         }
 
         else if(colorOfOpposition == 'black'){
-            console.log(potentialPositionIdsBlack.length);
-            potentialPositionIdsBlack.forEach(potentialPosition => {
+            blockedPositionsForWhiteKing.forEach(potentialPosition => {
                 if(potentialPosition == potentialPositionId){
                     safePosition= false;
                 }

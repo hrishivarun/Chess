@@ -54,8 +54,8 @@ const piecesBlack= {
 
 
 
-const potentialPositionIdsWhite= [];
-const potentialPositionIdsBlack= [];
+const blockedPositionsForBlackKing= [];
+const blockedPositionsForWhiteKing= [];
 
 
 

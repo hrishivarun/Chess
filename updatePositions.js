@@ -1,6 +1,6 @@
 function updateWhitePositions(){
-    while(potentialPositionIdsWhite.length){
-        potentialPositionIdsWhite.pop();
+    while(blockedPositionsForBlackKing.length){
+        blockedPositionsForBlackKing.pop();
     }
 
     Object.entries(piecesWhite).forEach(piece => {
@@ -21,15 +21,15 @@ function updateWhitePositions(){
 
         if(piece[1].pieceType != 'pawn'){
             piece[1].potentialPositions.forEach(potentialPosition => {
-                    potentialPositionIdsWhite.push(potentialPosition.getAttribute('id'));
+                    blockedPositionsForBlackKing.push(potentialPosition.getAttribute('id'));
             });
         }
         else{
             if(piece[1].position[0]>'a'){
-                potentialPositionIdsWhite.push(`${String.fromCharCode(piece[1].position.charCodeAt(0) - 1)}${String.fromCharCode(piece[1].position.charCodeAt(1) + 1)}`);
+                blockedPositionsForBlackKing.push(`${String.fromCharCode(piece[1].position.charCodeAt(0) - 1)}${String.fromCharCode(piece[1].position.charCodeAt(1) + 1)}`);
             }
             if(piece[1].position[0]<'h'){
-                potentialPositionIdsWhite.push(`${String.fromCharCode(piece[1].position.charCodeAt(0) + 1)}${String.fromCharCode(piece[1].position.charCodeAt(1) + 1)}`);
+                blockedPositionsForBlackKing.push(`${String.fromCharCode(piece[1].position.charCodeAt(0) + 1)}${String.fromCharCode(piece[1].position.charCodeAt(1) + 1)}`);
             }
         }
     });
@@ -40,8 +40,8 @@ function updateWhitePositions(){
 
 
 function updateBlackPositions(){
-    while(potentialPositionIdsBlack.length){
-        potentialPositionIdsBlack.pop();
+    while(blockedPositionsForWhiteKing.length){
+        blockedPositionsForWhiteKing.pop();
     }
 
     Object.entries(piecesBlack).forEach(piece => {
@@ -63,15 +63,15 @@ function updateBlackPositions(){
 
         if(piece[1].pieceType != 'pawn'){
             piece[1].potentialPositions.forEach(potentialPosition => {
-                potentialPositionIdsBlack.push(potentialPosition.getAttribute('id'));
+                blockedPositionsForWhiteKing.push(potentialPosition.getAttribute('id'));
             });
         }
         else{
             if(piece[1].position[0]>'a'){
-                potentialPositionIdsBlack.push(`${String.fromCharCode(piece[1].position.charCodeAt(0) - 1)}${String.fromCharCode(piece[1].position.charCodeAt(1) - 1)}`);
+                blockedPositionsForWhiteKing.push(`${String.fromCharCode(piece[1].position.charCodeAt(0) - 1)}${String.fromCharCode(piece[1].position.charCodeAt(1) - 1)}`);
             }
             if(piece[1].position[0]<'h'){
-                potentialPositionIdsBlack.push(`${String.fromCharCode(piece[1].position.charCodeAt(0) + 1)}${String.fromCharCode(piece[1].position.charCodeAt(1) - 1)}`);
+                blockedPositionsForWhiteKing.push(`${String.fromCharCode(piece[1].position.charCodeAt(0) + 1)}${String.fromCharCode(piece[1].position.charCodeAt(1) - 1)}`);
             }
         }
     });
