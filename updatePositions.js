@@ -83,6 +83,7 @@ function updateBlackPositions(){
 
 function updatePotentialPositions(){
     if(whiteMove){
+        whiteChecked= false;
         //calculating potential position for every White Piece
         updateWhitePositions();
 
@@ -90,6 +91,7 @@ function updatePotentialPositions(){
         updateBlackPositions();
     }
     else{
+        blackChecked= false;
         //calculating potential position for every Black Piece
         updateBlackPositions();
 

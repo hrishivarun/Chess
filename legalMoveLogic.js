@@ -76,92 +76,44 @@ function legalPawnMoves(position, colorOfOpposition, potentialPositions){
 function legalKnightMoves(position, colorOfOpposition, potentialPositions){
     if((position.charCodeAt(0) + 2)<=104&&(position.charCodeAt(1) + 1)<=56){
         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 2)}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
-        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
-            if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
-                if(potentialPosition.querySelector('img').matches('.king')){
-                    pushChecker(position, colorOfOpposition);
-                }
-            }
-            potentialPositions.push(potentialPosition);
-        }
+        addKnightMoves(position, colorOfOpposition, potentialPositions, potentialPosition);
+        backPieceOfSameColor(potentialPosition, colorOfOpposition);
     }
     if((position.charCodeAt(0) + 2)<=104&&(position.charCodeAt(1) - 1)>=49){
         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 2)}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
-        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
-            if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
-                if(potentialPosition.querySelector('img').matches('.king')){
-                    pushChecker(position, colorOfOpposition);
-                }
-            }
-            potentialPositions.push(potentialPosition);
-        }
+        addKnightMoves(position, colorOfOpposition, potentialPositions, potentialPosition);
+        backPieceOfSameColor(potentialPosition, colorOfOpposition);
     }
     if((position.charCodeAt(0) - 2)>=97&&(position.charCodeAt(1) + 1)<=56){
         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 2)}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
-        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
-            if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
-                if(potentialPosition.querySelector('img').matches('.king')){
-                    pushChecker(position, colorOfOpposition);
-                }
-            }
-            potentialPositions.push(potentialPosition);
-        }
+        addKnightMoves(position, colorOfOpposition, potentialPositions, potentialPosition);
+        backPieceOfSameColor(potentialPosition, colorOfOpposition);
     }
     if((position.charCodeAt(0) - 2)>=97&&(position.charCodeAt(1) - 1)>=49){
         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 2)}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
-        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
-            if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
-                if(potentialPosition.querySelector('img').matches('.king')){
-                    pushChecker(position, colorOfOpposition);
-                }
-            }
-            potentialPositions.push(potentialPosition);
-        }
+        addKnightMoves(position, colorOfOpposition, potentialPositions, potentialPosition);
+        backPieceOfSameColor(potentialPosition, colorOfOpposition);
     }
 
     if((position.charCodeAt(0) + 1)<=104&&(position.charCodeAt(1) + 2)<=56){
         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) + 2)}`);
-        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
-            if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
-                if(potentialPosition.querySelector('img').matches('.king')){
-                    pushChecker(position, colorOfOpposition);
-                }
-            }
-            potentialPositions.push(potentialPosition);
-        }
+        addKnightMoves(position, colorOfOpposition, potentialPositions, potentialPosition);
+        backPieceOfSameColor(potentialPosition, colorOfOpposition);
     }
     if((position.charCodeAt(0) + 1)<=104&&(position.charCodeAt(1) - 2)>=49){
         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) - 2)}`);
-        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
-            if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
-                if(potentialPosition.querySelector('img').matches('.king')){
-                    pushChecker(position, colorOfOpposition);
-                }
-            }
-            potentialPositions.push(potentialPosition);
-        }
+        addKnightMoves(position, colorOfOpposition, potentialPositions, potentialPosition);
+        backPieceOfSameColor(potentialPosition, colorOfOpposition);
     }
     if((position.charCodeAt(0) - 1)>=97&&(position.charCodeAt(1) + 2)<=56){
         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) + 2)}`);
-        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
-            if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
-                if(potentialPosition.querySelector('img').matches('.king')){
-                    pushChecker(position, colorOfOpposition);
-                }
-            }
-            potentialPositions.push(potentialPosition);
-        }
+        addKnightMoves(position, colorOfOpposition, potentialPositions, potentialPosition);
+        backPieceOfSameColor(potentialPosition, colorOfOpposition);
     }
     if((position.charCodeAt(0) - 1)>=97&&(position.charCodeAt(1) - 2)>=49){
         const potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) - 2)}`);
-        if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
-            if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
-                if(potentialPosition.querySelector('img').matches('.king')){
-                    pushChecker(position, colorOfOpposition);
-                }
-            }
-            potentialPositions.push(potentialPosition);
-        }
+        addKnightMoves(position, colorOfOpposition, potentialPositions, potentialPosition);
+        backPieceOfSameColor(potentialPosition, colorOfOpposition);
     }
 
     blockCheck(colorOfOpposition, potentialPositions);
@@ -196,6 +148,7 @@ function legalBishopMoves(position, colorOfOpposition, potentialPositions){
             }
             potentialPosition= sudoku.querySelector(`#${String.fromCharCode(potentialPositionId.charCodeAt(0) + 1)}${String.fromCharCode(potentialPositionId.charCodeAt(1) + 1)}`);
             potentialPositionId= potentialPosition.getAttribute('id');
+            backPieceOfSameColor(potentialPosition, colorOfOpposition);
         }
     }
     
@@ -216,6 +169,7 @@ function legalBishopMoves(position, colorOfOpposition, potentialPositions){
             }
             potentialPosition= sudoku.querySelector(`#${String.fromCharCode(potentialPositionId.charCodeAt(0) + 1)}${String.fromCharCode(potentialPositionId.charCodeAt(1) - 1)}`);
             potentialPositionId= potentialPosition.getAttribute('id');
+            backPieceOfSameColor(potentialPosition, colorOfOpposition);
         }
     }
     
@@ -236,6 +190,7 @@ function legalBishopMoves(position, colorOfOpposition, potentialPositions){
             }
             potentialPosition= sudoku.querySelector(`#${String.fromCharCode(potentialPositionId.charCodeAt(0) - 1)}${String.fromCharCode(potentialPositionId.charCodeAt(1) - 1)}`);
             potentialPositionId= potentialPosition.getAttribute('id');
+            backPieceOfSameColor(potentialPosition, colorOfOpposition);
         }
     }
 
@@ -256,6 +211,7 @@ function legalBishopMoves(position, colorOfOpposition, potentialPositions){
             } 
             potentialPosition= sudoku.querySelector(`#${String.fromCharCode(potentialPositionId.charCodeAt(0) - 1)}${String.fromCharCode(potentialPositionId.charCodeAt(1) + 1)}`);
             potentialPositionId= potentialPosition.getAttribute('id');
+            backPieceOfSameColor(potentialPosition, colorOfOpposition);
         }
     }
 
@@ -290,6 +246,7 @@ function legalRookMoves(position, colorOfOpposition, potentialPositions){
             }
             potentialPosition= sudoku.querySelector(`#${String.fromCharCode(potentialPositionId.charCodeAt(0))}${String.fromCharCode(potentialPositionId.charCodeAt(1) + 1)}`);
             potentialPositionId= potentialPosition.getAttribute('id');
+            backPieceOfSameColor(potentialPosition, colorOfOpposition);
         }
     }
     
@@ -310,6 +267,7 @@ function legalRookMoves(position, colorOfOpposition, potentialPositions){
             }
             potentialPosition= sudoku.querySelector(`#${String.fromCharCode(potentialPositionId.charCodeAt(0) + 1)}${String.fromCharCode(potentialPositionId.charCodeAt(1))}`);
             potentialPositionId= potentialPosition.getAttribute('id');
+            backPieceOfSameColor(potentialPosition, colorOfOpposition);
         }
     }
     
@@ -330,6 +288,7 @@ function legalRookMoves(position, colorOfOpposition, potentialPositions){
             }
             potentialPosition= sudoku.querySelector(`#${String.fromCharCode(potentialPositionId.charCodeAt(0))}${String.fromCharCode(potentialPositionId.charCodeAt(1) - 1)}`);
             potentialPositionId= potentialPosition.getAttribute('id');
+            backPieceOfSameColor(potentialPosition, colorOfOpposition);
         }
     }
 
@@ -350,6 +309,7 @@ function legalRookMoves(position, colorOfOpposition, potentialPositions){
             } 
             potentialPosition= sudoku.querySelector(`#${String.fromCharCode(potentialPositionId.charCodeAt(0) - 1)}${String.fromCharCode(potentialPositionId.charCodeAt(1))}`);
             potentialPositionId= potentialPosition.getAttribute('id');
+            backPieceOfSameColor(potentialPosition, colorOfOpposition);
         }
     }
 

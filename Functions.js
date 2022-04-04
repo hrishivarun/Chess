@@ -1,3 +1,33 @@
+function addKnightMoves(position, colorOfOpposition, potentialPositions, potentialPosition){
+    if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+        if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+            if(potentialPosition.querySelector('img').matches('.king')){
+                pushChecker(position, colorOfOpposition);
+            }
+        }
+        potentialPositions.push(potentialPosition);
+    }
+}
+
+
+
+
+
+function backPieceOfSameColor(potentialPosition, colorOfOpposition){
+    if(potentialPosition.childElementCount && !potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+        let potentialPositionId= potentialPosition.getAttribute('id');
+        if(colorOfOpposition == 'black'){
+            blockedPositionsForBlackKing.push(potentialPositionId);
+        }else if(colorOfOpposition == 'white'){
+            blockedPositionsForWhiteKing.push(potentialPositionId);
+        }
+    }
+}
+
+
+
+
+
 function pushChecker(position, colorOfOpposition){
     const checker= sudoku.querySelector(`#${position}`).querySelector('img').getAttribute('data-piece');
     if(colorOfOpposition== 'black'){
