@@ -94,9 +94,12 @@ textarea{
 .hover{
     background-color: chocolate;
 }
+.checked{
+    background-color: red;
+}
 .selected{
-    background-color: darkblue !important;
+    background-color: darkblue;
 }
 .potential-position{
-    background-color: red;
+    background-color: brown;
 }

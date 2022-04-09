@@ -136,6 +136,8 @@ sudoku.addEventListener('click', (e) => {
 
         //unselect the piece
         selectedPiece= null;
+        //check for check
+        checkForCheck();
 
         //change turns of white/black
         if(whiteMove){
@@ -301,6 +303,8 @@ sudoku.addEventListener('click', (e) => {
         
         //unselect the piece
         selectedPiece= null;
+        //check for check
+        checkForCheck();
         
         //change turns of white/black
         if(whiteMove){
@@ -310,4 +314,4 @@ sudoku.addEventListener('click', (e) => {
         }
         
     }
-})
+});
