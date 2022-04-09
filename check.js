@@ -1,7 +1,6 @@
 function checkForCheck(){
     if(!whiteMove){
         if(whiteChecked){
-            console.log('success');
             const position= piecesWhite['kingWhite'].position;
             const checkedSquare= sudoku.querySelector(`#${position}`);
             checkedSquare.classList.add('checked');
