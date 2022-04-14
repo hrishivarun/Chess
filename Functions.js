@@ -1,3 +1,4 @@
+//functions for legalMoveLogic.js
 function addKnightMoves(position, colorOfOpposition, potentialPositions, potentialPosition){
     if(!potentialPosition.childElementCount||potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
         if(potentialPosition.childElementCount && potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
@@ -6,6 +7,64 @@ function addKnightMoves(position, colorOfOpposition, potentialPositions, potenti
             }
         }
         potentialPositions.push(potentialPosition);
+    }
+}
+
+
+
+
+
+function castling(colorOfOpposition, potentialPositions){
+    if(colorOfOpposition == 'white'){
+        if(castle['black']['kingNotMoved'] == true){
+            //for king side castle
+            if(castle['black']['kingSideRook'] == true){
+                castle['black'].f8= document.getElementById(`f8`).hasChildNodes();
+                castle['black'].g8= document.getElementById(`g8`).hasChildNodes();
+
+                if(!castle['black'].f8 && !castle['black'].g8){
+                    const potentialPosition= sudoku.querySelector('#g8');
+                    potentialPositions.push(potentialPosition);
+                }
+            }
+
+            //for queen side castle
+            if(castle['black']['queenSideRook'] == true){
+                castle['black'].b8= document.getElementById(`b8`).hasChildNodes();
+                castle['black'].c8= document.getElementById(`c8`).hasChildNodes();
+                castle['black'].d8= document.getElementById(`d8`).hasChildNodes();
+                if(!castle['black'].b8 && !castle['black'].c8 && !castle['black'].d8){
+                    const potentialPosition= sudoku.querySelector('#c8');
+                    potentialPositions.push(potentialPosition);
+                }
+            }
+        }
+    }
+
+    else if(colorOfOpposition == 'black'){
+        if(castle['white']['kingNotMoved'] == true){
+            //for king side castle
+            if(castle['white']['kingSideRook'] == true){
+                castle['white'].f1= document.getElementById(`f1`).hasChildNodes();
+                castle['white'].g1= document.getElementById(`g1`).hasChildNodes();
+                
+                if(!castle['white'].f1 && !castle['white'].g1){
+                    const potentialPosition= sudoku.querySelector('#g1');
+                    potentialPositions.push(potentialPosition);
+                }
+            }
+
+            //for queen side castle
+            if(castle['white']['queenSideRook'] == true){
+                castle['white'].b1= document.getElementById(`b1`).hasChildNodes();
+                castle['white'].c1= document.getElementById(`c1`).hasChildNodes();
+                castle['white'].d1= document.getElementById(`d1`).hasChildNodes();
+                if(!castle['white'].b1 && !castle['white'].c1 && !castle['white'].d1){
+                    const potentialPosition= sudoku.querySelector('#c1');
+                    potentialPositions.push(potentialPosition);
+                }
+            }
+        }
     }
 }
 
@@ -251,6 +310,21 @@ function blockCheck(colorOfOpposition, potentialPositions){
                 filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
             }
         }
+
+
+
+        else{
+            const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
+                const positionId = checkBlockingPosition.getAttribute('id');
+                if(positionId == whiteChecker[0].position){
+                    return true;
+                }else {
+                    return false;
+                }
+            });
+
+            filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
+        }
     }
 
 
@@ -408,5 +482,194 @@ function blockCheck(colorOfOpposition, potentialPositions){
                 filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
             }
         }
+
+
+
+        else{
+            const tempPotentialPositions= potentialPositions.filter( checkBlockingPosition => {
+                const positionId = checkBlockingPosition.getAttribute('id');
+                if(positionId == blackChecker[0].position){
+                    return true;
+                }else {
+                    return false;
+                }
+            });
+
+            filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+//functions for movePieces.js
+function addQueen(selectedPiece, nextSquare, piece){
+    if(selectedPiece.matches('.pawn')){
+        const pawnAtEndOfFile= /[a-h](1|8)/;
+        const position= nextSquare.getAttribute('id');
+        if(pawnAtEndOfFile.test(position)){
+
+            
+
+            const queen= document.createElement('img');
+            if(whiteMove){
+                delete piecesWhite[piece];
+
+                queen.setAttribute('src', 'Chess_qlt60.png');
+                if(extraWhiteQueenCount=== 0){
+                    queen.setAttribute('data-piece', 'queenTwo');
+                }else if(extraWhiteQueenCount=== 1){
+                    queen.setAttribute('data-piece', 'queenThree');
+                }else if(extraWhiteQueenCount=== 2){
+                    queen.setAttribute('data-piece', 'queenFour');
+                }else if(extraWhiteQueenCount=== 3){
+                    queen.setAttribute('data-piece', 'queenFive');
+                }else if(extraWhiteQueenCount=== 4){
+                    queen.setAttribute('data-piece', 'queenSix');
+                }else if(extraWhiteQueenCount=== 5){
+                    queen.setAttribute('data-piece', 'queenSeven');
+                }else if(extraWhiteQueenCount=== 6){
+                    queen.setAttribute('data-piece', 'queenEight');
+                }else if(extraWhiteQueenCount=== 7){
+                    queen.setAttribute('data-piece', 'queenNine');
+                }
+
+                const extraQueen= {
+                    pieceType: 'queen',
+                    position: position,
+                    potentialPositions: []
+                };
+                extraQueenName= queen.getAttribute('data-piece');
+                piecesWhite[extraQueenName]= extraQueen;
+
+                extraWhiteQueenCount++;
+
+                queen.classList.add('white');
+            }
+            
+            
+            
+            else{
+                delete piecesBlack[piece];
+
+                queen.setAttribute('src', 'Chess_qdt60.png');
+                if(extraBlackQueenCount=== 0){
+                    queen.setAttribute('data-piece', 'queenTwo');
+                }else if(extraBlackQueenCount=== 1){
+                    queen.setAttribute('data-piece', 'queenThree');
+                }else if(extraBlackQueenCount=== 2){
+                    queen.setAttribute('data-piece', 'queenFour');
+                }else if(extraBlackQueenCount=== 3){
+                    queen.setAttribute('data-piece', 'queenFive');
+                }else if(extraBlackQueenCount=== 4){
+                    queen.setAttribute('data-piece', 'queenSix');
+                }else if(extraBlackQueenCount=== 5){
+                    queen.setAttribute('data-piece', 'queenSeven');
+                }else if(extraBlackQueenCount=== 6){
+                    queen.setAttribute('data-piece', 'queenEight');
+                }else if(extraBlackQueenCount=== 7){
+                    queen.setAttribute('data-piece', 'queenNine');
+                }
+                
+                const extraQueen= {
+                    pieceType: 'queen',
+                    position: position,
+                    potentialPositions: []
+                };
+                extraQueenName= queen.getAttribute('data-piece');
+                piecesBlack[extraQueenName]= extraQueen;
+
+                extraBlackQueenCount++;
+
+                queen.classList.add('black');
+            }
+            
+            queen.classList.add('queen');
+
+            nextSquare.replaceChild(queen, selectedPiece);
+        }
+    }
+}
+
+
+
+
+
+function checkForCheck(){
+    if(!whiteMove){
+        if(whiteChecked){
+            const position= piecesWhite['kingWhite'].position;
+            const checkedSquare= sudoku.querySelector(`#${position}`);
+            checkedSquare.classList.add('checked');
+        }
+        else{
+            const checkedSquare= sudoku.querySelector(`.checked`);
+            if(checkedSquare){
+                const pieceOnCheckedSquare= checkedSquare.querySelector('img');
+                if(!pieceOnCheckedSquare){
+                    checkedSquare.classList.remove('checked');
+                }else if(!pieceOnCheckedSquare.querySelector('.black')){
+                    checkedSquare.classList.remove('checked');
+                }
+            }
+        }
+    }
+
+
+
+
+
+    if(whiteMove){
+        if(blackChecked){
+            const position= piecesBlack['kingBlack'].position;
+            const checkedSquare= sudoku.querySelector(`#${position}`);
+            checkedSquare.classList.add('checked');
+        }
+        else{
+            const checkedSquare= sudoku.querySelector(`.checked`);
+            if(checkedSquare){
+                const pieceOnCheckedSquare= checkedSquare.querySelector('img');
+                if(!pieceOnCheckedSquare){
+                    checkedSquare.classList.remove('checked');
+                }else if(!pieceOnCheckedSquare.querySelector('.white')){
+                    checkedSquare.classList.remove('checked');
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+function cantCastle(piece){
+    //if moved piece is rook, and castling can't be done no more
+    if(whiteMove){
+        if(piece == 'rookOne'){
+            castle['white']['queenSideRook'] = false;
+        }else if(piece == 'rookTwo'){
+            castle['white']['kingSideRook'] = false;
+        }
+    }else{
+        if(piece == 'rookOne'){
+            castle['black']['queenSideRook'] = false;
+        }else if(piece == 'rookTwo'){
+            castle['black']['kingSideRook'] = false;
+        }
+    }
+
+    //if moved piece is king, and castling can't be done no more
+    if(piece == 'kingWhite'){
+        castle['white']['kingNotMoved'] = false;
+    }else if(piece == 'kingBlack'){
+        castle['black']['kingNotMoved'] = false;
     }
 }

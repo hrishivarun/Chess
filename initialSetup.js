@@ -61,6 +61,38 @@ const blockedPositionsForWhiteKing= [];
 
 
 
+const castle= {
+    white: {
+        kingNotMoved: true,
+
+        queenSideRook: true,
+        kingSideRook: true,
+        
+        b1: document.getElementById(`b1`).hasChildNodes(),
+        c1: document.getElementById(`c1`).hasChildNodes(),
+        d1: document.getElementById(`d1`).hasChildNodes(),
+        f1: document.getElementById(`f1`).hasChildNodes(),
+        g1: document.getElementById(`g1`).hasChildNodes()
+    },
+
+    black: {
+        kingNotMoved: true,
+
+        queenSideRook: true,
+        kingSideRook: true,
+
+        b8: document.getElementById(`b8`).hasChildNodes(),
+        c8: document.getElementById(`c8`).hasChildNodes(),
+        d8: document.getElementById(`d8`).hasChildNodes(),
+        f8: document.getElementById(`f8`).hasChildNodes(),
+        g8: document.getElementById(`g8`).hasChildNodes()
+    }
+};
+
+
+
+
+
 
 
 

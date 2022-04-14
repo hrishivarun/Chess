@@ -3,141 +3,105 @@ sudoku.addEventListener('click', (e) => {
     
     //if the position doesn't already have a piece of opposite color
     if(e.target.matches('.potential-position')){
-        
         //select the position and move the selected piece onto that position
+
+
+        //piece name
+        const piece= selectedPiece.getAttribute('data-piece');
+
+        //next square
         const nextSquare= e.target;
-        nextSquare.appendChild(selectedPiece);
         
-        //remove highlight from the previous position
-        selectedSquare.classList.remove('selected');
-
-
-
-        //get new position after the piece has been moved
+        //get new position of the next square
         const position= nextSquare.getAttribute('id');
 
+
+        //castle the king
+        if(piece == 'kingWhite' && castle['white']['kingNotMoved']){
+            if(position == 'c1'){
+                //select queen side rook and move it
+                const rookOne = sudoku.querySelector('#a1').querySelector('img');
+                const castlePositionForRook = sudoku.querySelector('#d1');
+                castlePositionForRook.appendChild(rookOne);
+
+                piecesWhite['rookOne'].position = 'd1';
+            }
+            else if(position == 'g1'){
+                //select king side rook and move it
+                const rookTwo = sudoku.querySelector('#h1').querySelector('img');
+                const castlePositionForRook = sudoku.querySelector('#f1');
+                castlePositionForRook.appendChild(rookTwo);
+
+                piecesWhite['rookTwo'].position = 'f1';
+            }
+        }
+        else if(piece == 'kingBlack' && castle['black']['kingNotMoved']){
+            if(position == 'c8'){
+                //select queen side rook and move it
+                const rookOne = sudoku.querySelector('#a8').querySelector('img');
+                const castlePositionForRook = sudoku.querySelector('#d8');
+                castlePositionForRook.appendChild(rookOne);
+
+                piecesBlack['rookOne'].position = 'd8';
+            }
+            else if(position == 'g8'){
+                //select king side rook and move it
+                const rookTwo = sudoku.querySelector('#h8').querySelector('img');
+                const castlePositionForRook = sudoku.querySelector('#f8');
+                castlePositionForRook.appendChild(rookTwo);
+
+                piecesBlack['rookTwo'].position = 'f8';
+            }
+        }
+        
+        //move the selected piece onto next square
+        nextSquare.appendChild(selectedPiece);
+        
+
+        //remove 'selected' highlight from the previous position
+        selectedSquare.classList.remove('selected');
+
         //remove previous 'potential-positions' for the piece and update its current position
-        const piece= selectedPiece.getAttribute('data-piece');
         if(whiteMove){
+            //remove previous 'potential-positions'
             piecesWhite[piece].potentialPositions.forEach(position => {
                 position.classList.remove('potential-position');
             });
 
+            //update current position
             piecesWhite[piece].position= position;
 
         }else{
+            //remove previous 'potential-positions'
             piecesBlack[piece].potentialPositions.forEach(position => {
                 position.classList.remove('potential-position');
             });
 
+            //update current position
             piecesBlack[piece].position= position;
         }
 
 
 
+        //functions other than just moving the piece
 
+        //add extra queen on board if pawn reaches endOfFile
+        addQueen(selectedPiece, nextSquare, piece);
 
-        if(selectedPiece.matches('.pawn')){
-            const pawnAtEndOfFile= /[a-h](1|8)/;
-            const position= nextSquare.getAttribute('id');
-            if(pawnAtEndOfFile.test(position)){
-
-                
-    
-                const queen= document.createElement('img');
-                if(whiteMove){
-                    delete piecesWhite[piece];
-
-                    queen.setAttribute('src', 'Chess_qlt60.png');
-                    if(extraWhiteQueenCount=== 0){
-                        queen.setAttribute('data-piece', 'queenTwo');
-                    }else if(extraWhiteQueenCount=== 1){
-                        queen.setAttribute('data-piece', 'queenThree');
-                    }else if(extraWhiteQueenCount=== 2){
-                        queen.setAttribute('data-piece', 'queenFour');
-                    }else if(extraWhiteQueenCount=== 3){
-                        queen.setAttribute('data-piece', 'queenFive');
-                    }else if(extraWhiteQueenCount=== 4){
-                        queen.setAttribute('data-piece', 'queenSix');
-                    }else if(extraWhiteQueenCount=== 5){
-                        queen.setAttribute('data-piece', 'queenSeven');
-                    }else if(extraWhiteQueenCount=== 6){
-                        queen.setAttribute('data-piece', 'queenEight');
-                    }else if(extraWhiteQueenCount=== 7){
-                        queen.setAttribute('data-piece', 'queenNine');
-                    }
-
-                    const extraQueen= {
-                        pieceType: 'queen',
-                        position: position,
-                        potentialPositions: []
-                    };
-                    extraQueenName= queen.getAttribute('data-piece');
-                    piecesWhite[extraQueenName]= extraQueen;
-
-                    extraWhiteQueenCount++;
-
-                    queen.classList.add('white');
-                }
-                
-                
-                
-                else{
-                    delete piecesBlack[piece];
-
-                    queen.setAttribute('src', 'Chess_qdt60.png');
-                    if(extraBlackQueenCount=== 0){
-                        queen.setAttribute('data-piece', 'queenTwo');
-                    }else if(extraBlackQueenCount=== 1){
-                        queen.setAttribute('data-piece', 'queenThree');
-                    }else if(extraBlackQueenCount=== 2){
-                        queen.setAttribute('data-piece', 'queenFour');
-                    }else if(extraBlackQueenCount=== 3){
-                        queen.setAttribute('data-piece', 'queenFive');
-                    }else if(extraBlackQueenCount=== 4){
-                        queen.setAttribute('data-piece', 'queenSix');
-                    }else if(extraBlackQueenCount=== 5){
-                        queen.setAttribute('data-piece', 'queenSeven');
-                    }else if(extraBlackQueenCount=== 6){
-                        queen.setAttribute('data-piece', 'queenEight');
-                    }else if(extraBlackQueenCount=== 7){
-                        queen.setAttribute('data-piece', 'queenNine');
-                    }
-                    
-                    const extraQueen= {
-                        pieceType: 'queen',
-                        position: position,
-                        potentialPositions: []
-                    };
-                    extraQueenName= queen.getAttribute('data-piece');
-                    piecesBlack[extraQueenName]= extraQueen;
-
-                    extraBlackQueenCount++;
-
-                    queen.classList.add('black');
-                }
-                
-                queen.classList.add('queen');
-
-                nextSquare.replaceChild(queen, selectedPiece);
-            }
-        }
-
-
-
+        //check if castling is still possible
+        cantCastle(piece);
 
 
         //update 'potential-positions' for every piece onboard, after one move
         updatePotentialPositions();
 
 
-
+        //check for check
+        checkForCheck();
 
 
         //unselect the piece
         selectedPiece= null;
-        //check for check
-        checkForCheck();
 
         //change turns of white/black
         if(whiteMove){
@@ -159,8 +123,17 @@ sudoku.addEventListener('click', (e) => {
 
     //else, if the position did have a piece of opposite color 
     else if(e.target.parentElement.matches('.potential-position')){
-        
+        //select the position and move the selected piece onto that position
 
+
+        //piece name
+        const piece= selectedPiece.getAttribute('data-piece');
+
+        //next square
+        const nextSquare= e.target.parentElement;
+
+        //get new position
+        const position= nextSquare.getAttribute('id');
 
         //select the position, remove the piece of opposite color and move the selected piece onto that position        
         
@@ -174,18 +147,12 @@ sudoku.addEventListener('click', (e) => {
 
 
         //replacing the captured piece in browser
-        const nextSquare= e.target.parentElement;
         nextSquare.replaceChild(selectedPiece, nextSquare.firstElementChild);
 
+        //remove highlight from the previous position
         selectedSquare.classList.remove('selected');
 
-
-
-        //get new position after the piece has been moved
-        const position= nextSquare.getAttribute('id');
-
         //remove previous 'potential-positions' for the piece and update its current position
-        const piece= selectedPiece.getAttribute('data-piece');
         if(whiteMove){
             piecesWhite[piece].potentialPositions.forEach(position => {
                 position.classList.remove('potential-position');
@@ -202,109 +169,25 @@ sudoku.addEventListener('click', (e) => {
 
 
 
+        //functions other than just moving the piece
 
-
-        if(selectedPiece.matches('.pawn')){
-            const pawnAtEndOfFile= /[a-h](1|8)/;
-            const position= nextSquare.getAttribute('id');
-            if(pawnAtEndOfFile.test(position)){
-
-                
-    
-                const queen= document.createElement('img');
-                if(whiteMove){
-                    delete piecesWhite[piece];
-
-                    queen.setAttribute('src', 'Chess_qlt60.png');
-                    if(extraWhiteQueenCount=== 0){
-                        queen.setAttribute('data-piece', 'queenTwo');
-                    }else if(extraWhiteQueenCount=== 1){
-                        queen.setAttribute('data-piece', 'queenThree');
-                    }else if(extraWhiteQueenCount=== 2){
-                        queen.setAttribute('data-piece', 'queenFour');
-                    }else if(extraWhiteQueenCount=== 3){
-                        queen.setAttribute('data-piece', 'queenFive');
-                    }else if(extraWhiteQueenCount=== 4){
-                        queen.setAttribute('data-piece', 'queenSix');
-                    }else if(extraWhiteQueenCount=== 5){
-                        queen.setAttribute('data-piece', 'queenSeven');
-                    }else if(extraWhiteQueenCount=== 6){
-                        queen.setAttribute('data-piece', 'queenEight');
-                    }else if(extraWhiteQueenCount=== 7){
-                        queen.setAttribute('data-piece', 'queenNine');
-                    }
-
-                    const extraQueen= {
-                        pieceType: 'queen',
-                        position: position,
-                        potentialPositions: []
-                    };
-                    extraQueenName= queen.getAttribute('data-piece');
-                    piecesWhite[extraQueenName]= extraQueen;
-
-                    extraWhiteQueenCount++;
-
-                    queen.classList.add('white');
-                }
-                
-                
-                
-                else{
-                    delete piecesBlack[piece];
-
-                    queen.setAttribute('src', 'Chess_qdt60.png');
-                    if(extraBlackQueenCount=== 0){
-                        queen.setAttribute('data-piece', 'queenTwo');
-                    }else if(extraBlackQueenCount=== 1){
-                        queen.setAttribute('data-piece', 'queenThree');
-                    }else if(extraBlackQueenCount=== 2){
-                        queen.setAttribute('data-piece', 'queenFour');
-                    }else if(extraBlackQueenCount=== 3){
-                        queen.setAttribute('data-piece', 'queenFive');
-                    }else if(extraBlackQueenCount=== 4){
-                        queen.setAttribute('data-piece', 'queenSix');
-                    }else if(extraBlackQueenCount=== 5){
-                        queen.setAttribute('data-piece', 'queenSeven');
-                    }else if(extraBlackQueenCount=== 6){
-                        queen.setAttribute('data-piece', 'queenEight');
-                    }else if(extraBlackQueenCount=== 7){
-                        queen.setAttribute('data-piece', 'queenNine');
-                    }
-                    
-                    const extraQueen= {
-                        pieceType: 'queen',
-                        position: position,
-                        potentialPositions: []
-                    };
-                    extraQueenName= queen.getAttribute('data-piece');
-                    piecesBlack[extraQueenName]= extraQueen;
-
-                    extraBlackQueenCount++;
-
-                    queen.classList.add('black');
-                }
-                
-                queen.classList.add('queen');
-
-                nextSquare.replaceChild(queen, selectedPiece);
-            }
-        }
-
-
-
+        //add extra queen on board
+        addQueen(selectedPiece, nextSquare, piece);
+        
+        //check if castling is still possible
+        cantCastle(piece);
 
 
         //update 'potential-positions' for every piece onboard, after one move
         updatePotentialPositions();
 
 
-
-
-        
-        //unselect the piece
-        selectedPiece= null;
         //check for check
         checkForCheck();
+
+
+        //unselect the piece
+        selectedPiece= null;
         
         //change turns of white/black
         if(whiteMove){

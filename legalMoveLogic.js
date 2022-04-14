@@ -415,7 +415,10 @@ function legalKingMoves(position, colorOfOpposition, potentialPositions){
         }
     }
 
+
+    castling(colorOfOpposition, potentialPositions);
     
+
     tempPotentialPositions= potentialPositions.filter(square => {
         let safePosition= true;
         const potentialPositionId= square.getAttribute('id');
