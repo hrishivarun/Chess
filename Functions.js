@@ -16,7 +16,7 @@ function addKnightMoves(position, colorOfOpposition, potentialPositions, potenti
 
 function castling(colorOfOpposition, potentialPositions){
     if(colorOfOpposition == 'white'){
-        if(castle['black']['kingNotMoved'] == true){
+        if(castle['black']['kingNotMoved'] == true && !blackChecked){
             //for king side castle
             if(castle['black']['kingSideRook'] == true){
                 castle['black'].f8= document.getElementById(`f8`).hasChildNodes();
@@ -42,7 +42,7 @@ function castling(colorOfOpposition, potentialPositions){
     }
 
     else if(colorOfOpposition == 'black'){
-        if(castle['white']['kingNotMoved'] == true){
+        if(castle['white']['kingNotMoved'] == true && !whiteChecked){
             //for king side castle
             if(castle['white']['kingSideRook'] == true){
                 castle['white'].f1= document.getElementById(`f1`).hasChildNodes();
