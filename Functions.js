@@ -15,6 +15,7 @@ function addKnightMoves(position, colorOfOpposition, potentialPositions, potenti
 
 
 function castling(colorOfOpposition, potentialPositions){
+    //for black king
     if(colorOfOpposition == 'white'){
         if(castle['black']['kingNotMoved'] == true && !blackChecked){
             //for king side castle
@@ -22,7 +23,14 @@ function castling(colorOfOpposition, potentialPositions){
                 castle['black'].f8= document.getElementById(`f8`).hasChildNodes();
                 castle['black'].g8= document.getElementById(`g8`).hasChildNodes();
 
-                if(!castle['black'].f8 && !castle['black'].g8){
+                let castlingBlocked = false;
+                blockedPositionsForBlackKing.forEach(position => {
+                    if(position == ('f8' || 'g8')){
+                        castlingBlocked = true;
+                    }
+                });
+
+                if(!castle['black'].f8 && !castle['black'].g8 && !castlingBlocked){
                     const potentialPosition= sudoku.querySelector('#g8');
                     potentialPositions.push(potentialPosition);
                 }
@@ -33,7 +41,15 @@ function castling(colorOfOpposition, potentialPositions){
                 castle['black'].b8= document.getElementById(`b8`).hasChildNodes();
                 castle['black'].c8= document.getElementById(`c8`).hasChildNodes();
                 castle['black'].d8= document.getElementById(`d8`).hasChildNodes();
-                if(!castle['black'].b8 && !castle['black'].c8 && !castle['black'].d8){
+
+                let castlingBlocked = false;
+                blockedPositionsForBlackKing.forEach(position => {
+                    if(position == ('b8' || 'c8' || 'd8')){
+                        castlingBlocked = true;
+                    }
+                });
+
+                if(!castle['black'].b8 && !castle['black'].c8 && !castle['black'].d8 && !castlingBlocked){
                     const potentialPosition= sudoku.querySelector('#c8');
                     potentialPositions.push(potentialPosition);
                 }
@@ -41,14 +57,22 @@ function castling(colorOfOpposition, potentialPositions){
         }
     }
 
+    //for white king
     else if(colorOfOpposition == 'black'){
         if(castle['white']['kingNotMoved'] == true && !whiteChecked){
             //for king side castle
             if(castle['white']['kingSideRook'] == true){
                 castle['white'].f1= document.getElementById(`f1`).hasChildNodes();
                 castle['white'].g1= document.getElementById(`g1`).hasChildNodes();
+
+                let castlingBlocked = false;
+                blockedPositionsForWhiteKing.forEach(position => {
+                    if(position == ('f1' || 'g1')){
+                        castlingBlocked = true;
+                    }
+                });
                 
-                if(!castle['white'].f1 && !castle['white'].g1){
+                if(!castle['white'].f1 && !castle['white'].g1 && !castlingBlocked){
                     const potentialPosition= sudoku.querySelector('#g1');
                     potentialPositions.push(potentialPosition);
                 }
@@ -59,7 +83,15 @@ function castling(colorOfOpposition, potentialPositions){
                 castle['white'].b1= document.getElementById(`b1`).hasChildNodes();
                 castle['white'].c1= document.getElementById(`c1`).hasChildNodes();
                 castle['white'].d1= document.getElementById(`d1`).hasChildNodes();
-                if(!castle['white'].b1 && !castle['white'].c1 && !castle['white'].d1){
+
+                let castlingBlocked = false;
+                blockedPositionsForWhiteKing.forEach(position => {
+                    if(position == ('b1' || 'c1' || 'd1')){
+                        castlingBlocked = true;
+                    }
+                });
+
+                if(!castle['white'].b1 && !castle['white'].c1 && !castle['white'].d1 && !castlingBlocked){
                     const potentialPosition= sudoku.querySelector('#c1');
                     potentialPositions.push(potentialPosition);
                 }
