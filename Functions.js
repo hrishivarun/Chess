@@ -705,3 +705,19 @@ function cantCastle(piece){
         castle['black']['kingNotMoved'] = false;
     }
 }
+
+
+
+
+
+function unpin(whiteMove, piece){
+    let colorOfOpposition;
+    if(whiteMove){
+        colorOfOpposition = 'black';
+    }else{
+        colorOfOpposition = 'white';
+    }
+    if(pinnedPieces[colorOfOpposition].hasOwnProperty(piece)){
+        delete pinnedPieces[colorOfOpposition][piece];
+    }
+}

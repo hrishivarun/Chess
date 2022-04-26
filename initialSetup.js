@@ -108,9 +108,15 @@ let selectedPiece= null;
 let whiteChecked= false;
 let blackChecked= false;
 
-//
+//pieces checking the king
 let blackChecker= [];
 let whiteChecker= [];
+
+//pinned pieces
+const pinnedPieces = {
+    white: {},
+    black: {}
+}
 
 //initially no extra queen on board from either side
 let extraWhiteQueenCount= 0;

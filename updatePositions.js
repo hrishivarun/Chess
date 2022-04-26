@@ -19,6 +19,22 @@ function updateWhitePositions(){
             legalKingMoves(piece[1].position, 'black', piece[1].potentialPositions);
         }
 
+
+        //pin pieces
+        let pinned = false;
+        Object.entries(pinnedPieces['white']).forEach( pinner => {
+            if(pinner[1] === piece[0]){
+                pinned = true;
+            }
+        });
+        if(pinned){
+            while(piece[1].potentialPositions.length){
+                piece[1].potentialPositions.pop();
+            }
+        }
+
+
+        //block positions for king where it'll be checked
         if(piece[1].pieceType != 'pawn'){
             piece[1].potentialPositions.forEach(potentialPosition => {
                     blockedPositionsForBlackKing.push(potentialPosition.getAttribute('id'));
@@ -61,6 +77,22 @@ function updateBlackPositions(){
             legalKingMoves(piece[1].position, 'white', piece[1].potentialPositions);
         }
 
+        
+        //pin pieces
+        let pinned = false;
+        Object.entries(pinnedPieces['black']).forEach( pinner => {
+            if(pinner[1] === piece[0]){
+                pinned = true;
+            }
+        });
+        if(pinned){
+            while(piece[1].potentialPositions.length){
+                piece[1].potentialPositions.pop();
+            }
+        }
+
+
+        //block positions for king where it'll be checked
         if(piece[1].pieceType != 'pawn'){
             piece[1].potentialPositions.forEach(potentialPosition => {
                 blockedPositionsForWhiteKing.push(potentialPosition.getAttribute('id'));

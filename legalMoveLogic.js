@@ -150,7 +150,42 @@ function legalBishopMoves(position, colorOfOpposition, potentialPositions){
             potentialPositionId= potentialPosition.getAttribute('id');
             backPieceOfSameColor(potentialPosition, colorOfOpposition);
         }
+
+        //check if bishop is pinning any piece
+        let pinCounter = 0;
+        let pinnedPiece;
+        potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
+        potentialPositionId= potentialPosition.getAttribute('id');
+        while(potentialPositionId[0]<='h'&&potentialPositionId[1]<='8'){
+            if(potentialPosition.childElementCount&&!potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                break;
+            }
+            else if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(pinCounter === 0){
+                    if(potentialPosition.querySelector('img').matches('.king')){
+                        break;
+                    }else{
+                        pinCounter++;
+                        pinnedPiece = potentialPosition.querySelector('img').getAttribute('data-piece');
+                    }
+                }
+                else if(pinCounter === 1){
+                    if(potentialPosition.querySelector('img').matches('.king')){
+                        const pinner = sudoku.querySelector(`#${position}`).querySelector('img').getAttribute('data-piece');
+                        pinnedPieces[colorOfOpposition][pinner] = pinnedPiece;
+                    }else{
+                        break;
+                    }
+                }
+            }
+            if(potentialPositionId[0]=='h'||potentialPositionId[1]=='8'){
+                break;
+            }
+            potentialPosition= sudoku.querySelector(`#${String.fromCharCode(potentialPositionId.charCodeAt(0) + 1)}${String.fromCharCode(potentialPositionId.charCodeAt(1) + 1)}`);
+            potentialPositionId= potentialPosition.getAttribute('id');
+        }
     }
+    
     
     if(position[0]<'h'&&position[1]>'1'){
         let potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
@@ -171,8 +206,40 @@ function legalBishopMoves(position, colorOfOpposition, potentialPositions){
             potentialPositionId= potentialPosition.getAttribute('id');
             backPieceOfSameColor(potentialPosition, colorOfOpposition);
         }
+
+        //check if bishop is pinning any piece
+        let pinCounter = 0;
+        let pinnedPiece;
+        potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
+        potentialPositionId= potentialPosition.getAttribute('id');
+        while(potentialPositionId[0]<='h'&&potentialPositionId[1]>='1'){
+            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(pinCounter === 0){
+                    if(potentialPosition.querySelector('img').matches('.king')){
+                        break;
+                    }else{
+                        pinCounter++;
+                        pinnedPiece = potentialPosition.querySelector('img').getAttribute('data-piece');
+                    }
+                }
+                else if(pinCounter === 1){
+                    if(potentialPosition.querySelector('img').matches('.king')){
+                        const pinner = sudoku.querySelector(`#${position}`).querySelector('img').getAttribute('data-piece');
+                        pinnedPieces[colorOfOpposition][pinner] = pinnedPiece;
+                    }else{
+                        break;
+                    }
+                }
+            }
+            if(potentialPositionId[0]=='h'||potentialPositionId[1]=='1'){
+                break;
+            }
+            potentialPosition= sudoku.querySelector(`#${String.fromCharCode(potentialPositionId.charCodeAt(0) + 1)}${String.fromCharCode(potentialPositionId.charCodeAt(1) - 1)}`);
+            potentialPositionId= potentialPosition.getAttribute('id');
+        }
     }
     
+
     if(position[0]>'a'&&position[1]>'1'){
         let potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
         let potentialPositionId= potentialPosition.getAttribute('id');
@@ -192,7 +259,39 @@ function legalBishopMoves(position, colorOfOpposition, potentialPositions){
             potentialPositionId= potentialPosition.getAttribute('id');
             backPieceOfSameColor(potentialPosition, colorOfOpposition);
         }
+
+        //check if bishop is pinning any piece
+        let pinCounter = 0;
+        let pinnedPiece;
+        potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
+        potentialPositionId= potentialPosition.getAttribute('id');
+        while(potentialPositionId[0]>='a'&&potentialPositionId[1]>='1'){
+            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(pinCounter === 0){
+                    if(potentialPosition.querySelector('img').matches('.king')){
+                        break;
+                    }else{
+                        pinCounter++;
+                        pinnedPiece = potentialPosition.querySelector('img').getAttribute('data-piece');
+                    }
+                }
+                else if(pinCounter === 1){
+                    if(potentialPosition.querySelector('img').matches('.king')){
+                        const pinner = sudoku.querySelector(`#${position}`).querySelector('img').getAttribute('data-piece');
+                        pinnedPieces[colorOfOpposition][pinner] = pinnedPiece;
+                    }else{
+                        break;
+                    }
+                }
+            }
+            if(potentialPositionId[0]=='a'||potentialPositionId[1]=='1'){
+                break;
+            }
+            potentialPosition= sudoku.querySelector(`#${String.fromCharCode(potentialPositionId.charCodeAt(0) - 1)}${String.fromCharCode(potentialPositionId.charCodeAt(1) - 1)}`);
+            potentialPositionId= potentialPosition.getAttribute('id');
+        }
     }
+
 
     if(position[0]>'a'&&position[1]<'8'){
         let potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
@@ -213,7 +312,39 @@ function legalBishopMoves(position, colorOfOpposition, potentialPositions){
             potentialPositionId= potentialPosition.getAttribute('id');
             backPieceOfSameColor(potentialPosition, colorOfOpposition);
         }
+
+        //check if bishop is pinning any piece
+        let pinCounter = 0;
+        let pinnedPiece;
+        potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
+        potentialPositionId= potentialPosition.getAttribute('id');
+        while(potentialPositionId[0]>='a'&&potentialPositionId[1]<='8'){
+            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(pinCounter === 0){
+                    if(potentialPosition.querySelector('img').matches('.king')){
+                        break;
+                    }else{
+                        pinCounter++;
+                        pinnedPiece = potentialPosition.querySelector('img').getAttribute('data-piece');
+                    }
+                }
+                else if(pinCounter === 1){
+                    if(potentialPosition.querySelector('img').matches('.king')){
+                        const pinner = sudoku.querySelector(`#${position}`).querySelector('img').getAttribute('data-piece');
+                        pinnedPieces[colorOfOpposition][pinner] = pinnedPiece;
+                    }else{
+                        break;
+                    }
+                }
+            }
+            if(potentialPositionId[0]=='a'||potentialPositionId[1]=='8'){
+                break;
+            }
+            potentialPosition= sudoku.querySelector(`#${String.fromCharCode(potentialPositionId.charCodeAt(0) - 1)}${String.fromCharCode(potentialPositionId.charCodeAt(1) + 1)}`);
+            potentialPositionId= potentialPosition.getAttribute('id');
+        }
     }
+
 
     blockCheck(colorOfOpposition, potentialPositions);
 }
@@ -248,8 +379,40 @@ function legalRookMoves(position, colorOfOpposition, potentialPositions){
             potentialPositionId= potentialPosition.getAttribute('id');
             backPieceOfSameColor(potentialPosition, colorOfOpposition);
         }
+
+        //check if rook is pinning any piece
+        let pinCounter = 0;
+        let pinnedPiece;
+        potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0))}${String.fromCharCode(position.charCodeAt(1) + 1)}`);
+        potentialPositionId= potentialPosition.getAttribute('id');
+        while(potentialPositionId[1]<='8'){
+            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(pinCounter === 0){
+                    if(potentialPosition.querySelector('img').matches('.king')){
+                        break;
+                    }else{
+                        pinCounter++;
+                        pinnedPiece = potentialPosition.querySelector('img').getAttribute('data-piece');
+                    }
+                }
+                else if(pinCounter === 1){
+                    if(potentialPosition.querySelector('img').matches('.king')){
+                        const pinner = sudoku.querySelector(`#${position}`).querySelector('img').getAttribute('data-piece');
+                        pinnedPieces[colorOfOpposition][pinner] = pinnedPiece;
+                    }else{
+                        break;
+                    }
+                }
+            }
+            if(potentialPositionId[1]=='8'){
+                break;
+            }
+            potentialPosition= sudoku.querySelector(`#${String.fromCharCode(potentialPositionId.charCodeAt(0))}${String.fromCharCode(potentialPositionId.charCodeAt(1) + 1)}`);
+            potentialPositionId= potentialPosition.getAttribute('id');
+        }
     }
     
+
     if(position[0]<'h'){
         let potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1))}`);
         let potentialPositionId= potentialPosition.getAttribute('id');
@@ -269,8 +432,40 @@ function legalRookMoves(position, colorOfOpposition, potentialPositions){
             potentialPositionId= potentialPosition.getAttribute('id');
             backPieceOfSameColor(potentialPosition, colorOfOpposition);
         }
+
+        //check if rook is pinning any piece
+        let pinCounter = 0;
+        let pinnedPiece;
+        potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) + 1)}${String.fromCharCode(position.charCodeAt(1))}`);
+        potentialPositionId= potentialPosition.getAttribute('id');
+        while(potentialPositionId[0]<='h'){
+            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(pinCounter === 0){
+                    if(potentialPosition.querySelector('img').matches('.king')){
+                        break;
+                    }else{
+                        pinCounter++;
+                        pinnedPiece = potentialPosition.querySelector('img').getAttribute('data-piece');
+                    }
+                }
+                else if(pinCounter === 1){
+                    if(potentialPosition.querySelector('img').matches('.king')){
+                        const pinner = sudoku.querySelector(`#${position}`).querySelector('img').getAttribute('data-piece');
+                        pinnedPieces[colorOfOpposition][pinner] = pinnedPiece;
+                    }else{
+                        break;
+                    }
+                }
+            }
+            if(potentialPositionId[0]=='h'){
+                break;
+            }
+            potentialPosition= sudoku.querySelector(`#${String.fromCharCode(potentialPositionId.charCodeAt(0) + 1)}${String.fromCharCode(potentialPositionId.charCodeAt(1))}`);
+            potentialPositionId= potentialPosition.getAttribute('id');
+        }
     }
     
+
     if(position[1]>'1'){
         let potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0))}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
         let potentialPositionId= potentialPosition.getAttribute('id');
@@ -290,7 +485,39 @@ function legalRookMoves(position, colorOfOpposition, potentialPositions){
             potentialPositionId= potentialPosition.getAttribute('id');
             backPieceOfSameColor(potentialPosition, colorOfOpposition);
         }
+
+        //check if rook is pinning any piece
+        let pinCounter = 0;
+        let pinnedPiece;
+        potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0))}${String.fromCharCode(position.charCodeAt(1) - 1)}`);
+        potentialPositionId= potentialPosition.getAttribute('id');
+        while(potentialPositionId[1]>='1'){
+            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(pinCounter === 0){
+                    if(potentialPosition.querySelector('img').matches('.king')){
+                        break;
+                    }else{
+                        pinCounter++;
+                        pinnedPiece = potentialPosition.querySelector('img').getAttribute('data-piece');
+                    }
+                }
+                else if(pinCounter === 1){
+                    if(potentialPosition.querySelector('img').matches('.king')){
+                        const pinner = sudoku.querySelector(`#${position}`).querySelector('img').getAttribute('data-piece');
+                        pinnedPieces[colorOfOpposition][pinner] = pinnedPiece;
+                    }else{
+                        break;
+                    }
+                }
+            }
+            if(potentialPositionId[1]=='1'){
+                break;
+            }
+            potentialPosition= sudoku.querySelector(`#${String.fromCharCode(potentialPositionId.charCodeAt(0))}${String.fromCharCode(potentialPositionId.charCodeAt(1) - 1)}`);
+            potentialPositionId= potentialPosition.getAttribute('id');
+        }
     }
+
 
     if(position[0]>'a'){
         let potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1))}`);
@@ -311,7 +538,39 @@ function legalRookMoves(position, colorOfOpposition, potentialPositions){
             potentialPositionId= potentialPosition.getAttribute('id');
             backPieceOfSameColor(potentialPosition, colorOfOpposition);
         }
+
+        //check if rook is pinning any piece
+        let pinCounter = 0;
+        let pinnedPiece;
+        potentialPosition= sudoku.querySelector(`#${String.fromCharCode(position.charCodeAt(0) - 1)}${String.fromCharCode(position.charCodeAt(1))}`);
+        potentialPositionId= potentialPosition.getAttribute('id');
+        while(potentialPositionId[0]>='a'){
+            if(potentialPosition.childElementCount&&potentialPosition.querySelector('img').matches(`.${colorOfOpposition}`)){
+                if(pinCounter === 0){
+                    if(potentialPosition.querySelector('img').matches('.king')){
+                        break;
+                    }else{
+                        pinCounter++;
+                        pinnedPiece = potentialPosition.querySelector('img').getAttribute('data-piece');
+                    }
+                }
+                else if(pinCounter === 1){
+                    if(potentialPosition.querySelector('img').matches('.king')){
+                        const pinner = sudoku.querySelector(`#${position}`).querySelector('img').getAttribute('data-piece');
+                        pinnedPieces[colorOfOpposition][pinner] = pinnedPiece;
+                    }else{
+                        break;
+                    }
+                }
+            }
+            if(potentialPositionId[0]=='a'){
+                break;
+            }
+            potentialPosition= sudoku.querySelector(`#${String.fromCharCode(potentialPositionId.charCodeAt(0) - 1)}${String.fromCharCode(potentialPositionId.charCodeAt(1))}`);
+            potentialPositionId= potentialPosition.getAttribute('id');
+        }
     }
+
 
     blockCheck(colorOfOpposition, potentialPositions);
 }

@@ -91,6 +91,9 @@ sudoku.addEventListener('click', (e) => {
         //check if castling is still possible
         cantCastle(piece);
 
+        //unpin any piece of opposite color the current moved piece was pinning
+        unpin(whiteMove, piece);
+
 
         //update 'potential-positions' for every piece onboard, after one move
         updatePotentialPositions();
@@ -176,6 +179,9 @@ sudoku.addEventListener('click', (e) => {
         
         //check if castling is still possible
         cantCastle(piece);
+
+        //unpin any piece of opposite color the current moved piece was pinning
+        unpin(whiteMove, piece);
 
 
         //update 'potential-positions' for every piece onboard, after one move
