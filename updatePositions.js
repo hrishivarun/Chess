@@ -33,11 +33,17 @@ function updateWhitePositions(){
         if(pinned){
             for(let i=0; i<piece[1].potentialPositions.length; i++){
                 let popPosition = true;
-                piecesBlack[pinner].potentialPositions.forEach( pinnerPosition => {
-                    if(piece[1].potentialPositions[i] == pinnerPosition){
-                        popPosition = false;
-                    }
-                });
+                const pinnerPosition = sudoku.querySelector(`#${piecesBlack[pinner].position}`);
+
+                if(piece[1].potentialPositions[i] == pinnerPosition){
+                    popPosition = false;
+                }else{
+                    piecesBlack[pinner].potentialPositions.forEach( pinnerPotentialPosition => {
+                        if(piece[1].potentialPositions[i] == pinnerPotentialPosition){
+                            popPosition = false;
+                        }
+                    });
+                }
 
                 if(popPosition){
                     piece[1].potentialPositions.splice(i, 1);
@@ -104,11 +110,17 @@ function updateBlackPositions(){
         if(pinned){
             for(let i=0; i<piece[1].potentialPositions.length; i++){
                 let popPosition = true;
-                piecesWhite[pinner].potentialPositions.forEach( pinnerPosition => {
-                    if(piece[1].potentialPositions[i] == pinnerPosition){
-                        popPosition = false;
-                    }
-                });
+                const pinnerPosition = sudoku.querySelector(`#${piecesWhite[pinner].position}`);
+                
+                if(piece[1].potentialPositions[i] == pinnerPosition){
+                    popPosition = false;
+                }else{
+                    piecesWhite[pinner].potentialPositions.forEach( pinnerPotentialPosition => {
+                        if(piece[1].potentialPositions[i] == pinnerPotentialPosition){
+                            popPosition = false;
+                        }
+                    });
+                }
 
                 if(popPosition){
                     piece[1].potentialPositions.splice(i, 1);
