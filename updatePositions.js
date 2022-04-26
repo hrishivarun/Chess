@@ -22,14 +22,27 @@ function updateWhitePositions(){
 
         //pin pieces
         let pinned = false;
-        Object.entries(pinnedPieces['white']).forEach( pinner => {
-            if(pinner[1] === piece[0]){
+        let pinner;
+        Object.entries(pinnedPieces['white']).forEach( potentialPinner => {
+            if(potentialPinner[1] === piece[0]){
+                pinner = potentialPinner[0];
                 pinned = true;
             }
         });
+
         if(pinned){
-            while(piece[1].potentialPositions.length){
-                piece[1].potentialPositions.pop();
+            for(let i=0; i<piece[1].potentialPositions.length; i++){
+                let popPosition = true;
+                piecesBlack[pinner].potentialPositions.forEach( pinnerPosition => {
+                    if(piece[1].potentialPositions[i] == pinnerPosition){
+                        popPosition = false;
+                    }
+                });
+
+                if(popPosition){
+                    piece[1].potentialPositions.splice(i, 1);
+                    i--
+                }
             }
         }
 
@@ -80,14 +93,27 @@ function updateBlackPositions(){
         
         //pin pieces
         let pinned = false;
-        Object.entries(pinnedPieces['black']).forEach( pinner => {
-            if(pinner[1] === piece[0]){
+        let pinner;
+        Object.entries(pinnedPieces['black']).forEach( potentialPinner => {
+            if(potentialPinner[1] === piece[0]){
+                pinner = potentialPinner[0];
                 pinned = true;
             }
         });
+
         if(pinned){
-            while(piece[1].potentialPositions.length){
-                piece[1].potentialPositions.pop();
+            for(let i=0; i<piece[1].potentialPositions.length; i++){
+                let popPosition = true;
+                piecesWhite[pinner].potentialPositions.forEach( pinnerPosition => {
+                    if(piece[1].potentialPositions[i] == pinnerPosition){
+                        popPosition = false;
+                    }
+                });
+
+                if(popPosition){
+                    piece[1].potentialPositions.splice(i, 1);
+                    i--
+                }
             }
         }
 
