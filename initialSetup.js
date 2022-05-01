@@ -57,6 +57,11 @@ const piecesBlack= {
 const blockedPositionsForBlackKing= [];
 const blockedPositionsForWhiteKing= [];
 
+const overallPotentialPositions = {
+    white: [],
+    black: []
+}
+
 
 
 
@@ -121,3 +126,20 @@ const pinnedPieces = {
 //initially no extra queen on board from either side
 let extraWhiteQueenCount= 0;
 let extraBlackQueenCount= 0;
+
+//play game
+let play = true;
+
+
+
+
+
+//light up the square you're hovering on
+if(play){
+    const sudoku= document.querySelector('#sudoku');
+
+    //indicating which chess square you're currently hovering over
+    sudoku.addEventListener('mouseover', highlightSquare);
+    //remove the indication, when mouse pointer moved away from the chess square its currently hovering over
+    sudoku.addEventListener('mouseout', unhighlightSquare);
+}

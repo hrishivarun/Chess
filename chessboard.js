@@ -204,33 +204,3 @@
     // temp.classList.add('pawn');
     // sudoku.querySelector('#a2').appendChild(temp);
 })();
-
-
-
-
-
-
-
-
-
-
-const sudoku= document.querySelector('#sudoku');
-
-//indicating which chess square you're currently hovering over
-sudoku.addEventListener('mouseover', (e) => {
-    if(e.target.matches('.odd')||e.target.matches('.even')){
-        e.target.classList.add('hover');
-    }else if(e.target.matches('img')){
-        if(e.target.parentElement.matches('.odd')||e.target.parentElement.matches('.even'))
-        e.target.parentElement.classList.add('hover');
-    }
-});
-//remove the indication, when mouse pointer moved away from the chess square its currently hovering over
-sudoku.addEventListener('mouseout', (e) => {
-    if(e.target.matches('.odd')||e.target.matches('.even')){
-        e.target.classList.remove('hover');
-    }else if(e.target.matches('img')){
-        if(e.target.parentElement.matches('.odd')||e.target.parentElement.matches('.even'))
-        e.target.parentElement.classList.remove('hover');
-    }
-});

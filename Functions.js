@@ -721,3 +721,69 @@ function unpin(whiteMove, piece){
         delete pinnedPieces[colorOfOpposition][piece];
     }
 }
+
+
+
+
+
+function removePreviousHighlight(piece, position){
+    if(whiteMove){
+        //remove previous 'potential-positions'
+        piecesWhite[piece].potentialPositions.forEach(position => {
+            position.classList.remove('potential-position');
+        });
+
+        //update current position
+        piecesWhite[piece].position= position;
+    }else{
+        //remove previous 'potential-positions'
+        piecesBlack[piece].potentialPositions.forEach(position => {
+            position.classList.remove('potential-position');
+        });
+
+        //update current position
+        piecesBlack[piece].position= position;
+    }
+}
+
+
+
+
+
+function changeTurn(){
+    if(whiteMove){
+        if(piecesBlack['kingBlack'].potentialPositions.length == 0 && overallPotentialPositions['black'].length == 0){
+            const announcement = document.querySelector('.announcement');
+            if(blackChecked){
+                announcement.textContent= 'White won the game!!';
+            }else{
+                announcement.textContent= 'Its a draw.';
+            }
+            announcement.style.display = 'block';
+
+            play = false;
+            sudoku.removeEventListener('mouseover', highlightSquare);
+            sudoku.removeEventListener('mouseout', unhighlightSquare);
+            sudoku.removeEventListener('click', selectPiece);
+        }else{
+            whiteMove= false;
+        }
+    }else{
+        if(piecesWhite['kingWhite'].potentialPositions.length == 0 && overallPotentialPositions['white'].length == 0){
+            const announcement = document.querySelector('.announcement');
+            if(whiteChecked){
+                announcement.textContent= 'Black won the game!!';
+            }else{
+                announcement.textContent= 'Its a draw.';
+            }
+            announcement.style.display = 'block';
+
+            play = false;
+            sudoku.removeEventListener('mouseover', highlightSquare);
+            sudoku.removeEventListener('mouseout', unhighlightSquare);
+            sudoku.removeEventListener('click', selectPiece);
+        }else{
+            whiteMove= true;
+        }
+    }
+}

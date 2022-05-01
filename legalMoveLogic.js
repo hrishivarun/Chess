@@ -701,5 +701,5 @@ function legalKingMoves(position, colorOfOpposition, potentialPositions){
     });
 
     filterPositionsIfChecked(potentialPositions, tempPotentialPositions);
-    console.log(potentialPositions);
+    //console.log(potentialPositions);
 }

@@ -2,6 +2,9 @@ function updateWhitePositions(){
     while(blockedPositionsForBlackKing.length){
         blockedPositionsForBlackKing.pop();
     }
+    while(overallPotentialPositions['white'].length){
+        overallPotentialPositions['white'].pop();
+    }
 
     Object.entries(piecesWhite).forEach(piece => {
         piece[1].potentialPositions= [];
@@ -53,6 +56,11 @@ function updateWhitePositions(){
         }
 
 
+        //store all potential positions for white pieces
+        piece[1].potentialPositions.forEach(potentialPosition => {
+            overallPotentialPositions['white'].push(potentialPosition.getAttribute('id'));
+        });
+
         //block positions for king where it'll be checked
         if(piece[1].pieceType != 'pawn'){
             piece[1].potentialPositions.forEach(potentialPosition => {
@@ -77,6 +85,9 @@ function updateWhitePositions(){
 function updateBlackPositions(){
     while(blockedPositionsForWhiteKing.length){
         blockedPositionsForWhiteKing.pop();
+    }
+    while(overallPotentialPositions['black'].length){
+        overallPotentialPositions['black'].pop();
     }
 
     Object.entries(piecesBlack).forEach(piece => {
@@ -129,6 +140,11 @@ function updateBlackPositions(){
             }
         }
 
+
+        //store all potential positions for black pieces
+        piece[1].potentialPositions.forEach(potentialPosition => {
+            overallPotentialPositions['black'].push(potentialPosition.getAttribute('id'));
+        });
 
         //block positions for king where it'll be checked
         if(piece[1].pieceType != 'pawn'){
