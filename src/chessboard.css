@@ -9,7 +9,7 @@
     --height: 100px;
 }
 body {
-    background-color: red;
+    background-color: burlywood;
     font-size: 20px;
 }
 h1{
@@ -24,6 +24,17 @@ h1{
 p{
     text-align: center;
 }
+button{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    background-color: blueviolet;
+    color: white;
+    width: 150px;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px calc(50vw - calc(150px / 2));
+}
 #sudoku {
     box-sizing: content-box;
     color: yellow;
@@ -34,7 +45,7 @@ p{
     border: 5px double darkolivegreen;
     margin-left: calc(calc(100vw - 560px)/2);
     margin-right: calc(calc(100vw - 560px)/2);
-    display: grid;
+    display: none;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 .odd{
@@ -73,6 +84,18 @@ p{
 
 }
 
+.hover{
+    background-color: chocolate;
+}
+.checked{
+    background-color: red;
+}
+.selected{
+    background-color: darkblue;
+}
+.potential-position{
+    background-color: brown;
+}
 
 .parent{
     margin-left: calc( calc(100vw / 2) - calc(var(--width)/2));
@@ -91,17 +114,4 @@ p{
     height: 100px;
     background-color: yellowgreen;
     font-size: 30px;
-}
-
-.hover{
-    background-color: chocolate;
-}
-.checked{
-    background-color: red;
-}
-.selected{
-    background-color: darkblue;
-}
-.potential-position{
-    background-color: brown;
 }
