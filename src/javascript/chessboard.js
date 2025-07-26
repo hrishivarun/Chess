@@ -32,7 +32,7 @@
         if(i==1|| i==8){
             const div= sudoku.querySelector(`div:nth-child(${i})`);
             const img= document.createElement('img');
-            img.setAttribute('src', '../src/images/Chess_rdt60.png');
+            img.setAttribute('src', 'src/images/Chess_rdt60.png');
             img.setAttribute('alt', 'Black Rook');
             if(i==1){
                 img.setAttribute('data-piece', `rookOne`);
@@ -45,7 +45,7 @@
         }else if(i==2||i==7){
             const div= sudoku.querySelector(`div:nth-child(${i})`);
             const img= document.createElement('img');
-            img.setAttribute('src', '../src/images/Chess_ndt60.png');
+            img.setAttribute('src', 'src/images/Chess_ndt60.png');
             img.setAttribute('alt', 'Black Knight');
             if(i==2){
                 img.setAttribute('data-piece', `knightOne`);
@@ -58,7 +58,7 @@
         }else if(i==3||i==6){
             const div= sudoku.querySelector(`div:nth-child(${i})`);
             const img= document.createElement('img');
-            img.setAttribute('src', '../src/images/Chess_bdt60.png');
+            img.setAttribute('src', 'src/images/Chess_bdt60.png');
             img.setAttribute('alt', 'Black Bishop');
             if(i==3){
                 img.setAttribute('data-piece', `bishopOne`);
@@ -71,7 +71,7 @@
         }else if(i==57||i==64){
             const div= sudoku.querySelector(`div:nth-child(${i})`);
             const img= document.createElement('img');
-            img.setAttribute('src', '../src/images/Chess_rlt60.png');
+            img.setAttribute('src', 'src/images/Chess_rlt60.png');
             img.setAttribute('alt', 'White Rook');
             if(i==57){
                 img.setAttribute('data-piece', `rookOne`);
@@ -84,7 +84,7 @@
         }else if(i==58||i==63){
             const div= sudoku.querySelector(`div:nth-child(${i})`);
             const img= document.createElement('img');
-            img.setAttribute('src', '../src/images/Chess_nlt60.png');
+            img.setAttribute('src', 'src/images/Chess_nlt60.png');
             img.setAttribute('alt', 'White Knight');
             if(i==58){
                 img.setAttribute('data-piece', `knightOne`);
@@ -97,7 +97,7 @@
         }else if(i==59||i==62){
             const div= sudoku.querySelector(`div:nth-child(${i})`);
             const img= document.createElement('img');
-            img.setAttribute('src', '../src/images/Chess_blt60.png');
+            img.setAttribute('src', 'src/images/Chess_blt60.png');
             img.setAttribute('alt', 'White Bishop');
             if(i==59){
                 img.setAttribute('data-piece', `bishopOne`);
@@ -110,7 +110,7 @@
         }else if(i==9||i==10||i==11||i==12||i==13||i==14||i==15||i==16){
             const div= sudoku.querySelector(`div:nth-child(${i})`);
             const img= document.createElement('img');
-            img.setAttribute('src', '../src/images/Chess_pdt60.png');
+            img.setAttribute('src', 'src/images/Chess_pdt60.png');
             img.setAttribute('alt', 'Black Pawn');
             if(i==9){
                 img.setAttribute('data-piece', `pawnOne`);
@@ -135,7 +135,7 @@
         }else if(i==49||i==50||i==51||i==52||i==53||i==54||i==55||i==56){
             const div= sudoku.querySelector(`div:nth-child(${i})`);
             const img= document.createElement('img');
-            img.setAttribute('src', '../src/images/Chess_plt60.png');
+            img.setAttribute('src', 'src/images/Chess_plt60.png');
             img.setAttribute('alt', 'White Pawn');
             if(i==49){
                 img.setAttribute('data-piece', `pawnOne`);
@@ -160,7 +160,7 @@
         }else if(i==4){
             const div= sudoku.querySelector(`div:nth-child(${i})`);
             const img= document.createElement('img');
-            img.setAttribute('src', '../src/images/Chess_qdt60.png');
+            img.setAttribute('src', 'src/images/Chess_qdt60.png');
             img.setAttribute('alt', 'Black Queen');
             img.setAttribute('data-piece', `queenOne`);
             img.classList.add('black');
@@ -169,7 +169,7 @@
         }else if(i==5){
             const div= sudoku.querySelector(`div:nth-child(${i})`);
             const img= document.createElement('img');
-            img.setAttribute('src', '../src/images/Chess_kdt60.png');
+            img.setAttribute('src', 'src/images/Chess_kdt60.png');
             img.setAttribute('alt', 'Black King');
             img.setAttribute('data-piece', `kingBlack`);
             img.classList.add('black');
@@ -178,7 +178,7 @@
         }else if(i==61){
             const div= sudoku.querySelector(`div:nth-child(${i})`);
             const img= document.createElement('img');
-            img.setAttribute('src', '../src/images/Chess_klt60.png');
+            img.setAttribute('src', 'src/images/Chess_klt60.png');
             img.setAttribute('alt', 'White King');
             img.setAttribute('data-piece', `kingWhite`);
             img.classList.add('white');
@@ -187,7 +187,7 @@
         }else if(i==60){
             const div= sudoku.querySelector(`div:nth-child(${i})`);
             const img= document.createElement('img');
-            img.setAttribute('src', '../src/images/Chess_qlt60.png');
+            img.setAttribute('src', 'src/images/Chess_qlt60.png');
             img.setAttribute('alt', 'White Queen');
             img.setAttribute('data-piece', `queenOne`);
             img.classList.add('white');

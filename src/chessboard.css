@@ -9,7 +9,7 @@
     --height: 100px;
 }
 body {
-    background-color: burlywood;
+    background-color: lightslategrey;
     font-size: 20px;
 }
 h1{
@@ -39,22 +39,26 @@ button{
     box-sizing: content-box;
     color: yellow;
     width: 560px; 
-    height: 560px;
+    height:auto;
     background-color: black;
-    padding: 1px;
-    border: 5px double darkolivegreen;
+    /* padding: 1px; */
+    border: 10px double darkblue;
     margin-left: calc(calc(100vw - 560px)/2);
     margin-right: calc(calc(100vw - 560px)/2);
-    display: none;
+    /* display: none; */
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-row-gap: 0cap;
 }
 .odd{
+    display: inline-block;
     background-color: white;
     color: darkslategray;
     height: 70px; 
     width: 70px;   
 }
 .even{
+    display: inline-block;
     background-color: darkslategray;
     color: darkred;
     height: 70px; 
