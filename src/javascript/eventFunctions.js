@@ -40,6 +40,7 @@ function selectPiece(e){
                     piecesWhite[piece].potentialPositions.forEach(position =>{
                         position.classList.add('potential-position');
                     });
+                    addCaptureClass();
                 }
 
 
@@ -48,6 +49,7 @@ function selectPiece(e){
                     piecesWhite[piece].potentialPositions.forEach(position =>{
                         position.classList.remove('potential-position');
                     });
+                    document.querySelectorAll('.capture').forEach(el => el.classList.remove('capture'));
                     selectedPiece= null;
                 }
             }
@@ -71,6 +73,7 @@ function selectPiece(e){
                     piecesBlack[piece].potentialPositions.forEach(position =>{
                         position.classList.add('potential-position');
                     });
+                    addCaptureClass();
                 }
     
     
@@ -79,9 +82,25 @@ function selectPiece(e){
                     piecesBlack[piece].potentialPositions.forEach(position =>{
                         position.classList.remove('potential-position');
                     });
+                    document.querySelectorAll('.capture').forEach(el => el.classList.remove('capture'));
                     selectedPiece= null;
                 }
             }
         }
     }
 }
+
+
+function addCaptureClass() {
+    // remove any old capture flags
+    document.querySelectorAll('.capture').forEach(el => el.classList.remove('capture'));
+    // for each highlighted square that already contains a piece of the opposite color, add .capture
+    if (!selectedPiece) return;
+    const enemyColor = selectedPiece.classList.contains('white') ? 'black' : 'white';
+    document.querySelectorAll('.potential-position').forEach(square => {
+      const img = square.querySelector('img');
+      if (img && img.classList.contains(enemyColor)) {
+        square.classList.add('capture');
+      }
+    });
+  }

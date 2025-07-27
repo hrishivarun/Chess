@@ -67,6 +67,7 @@ if(play){
 
 
 
+
             //functions other than just moving the piece
 
             //add extra queen on board if pawn reaches endOfFile
@@ -89,6 +90,7 @@ if(play){
 
             //unselect the piece
             selectedPiece= null;
+            document.querySelectorAll('.capture').forEach(el => el.classList.remove('capture'));
 
             //change turns of white/black and end game is someone is checkmated or stalemated
             changeTurn();
@@ -163,6 +165,7 @@ if(play){
             //unselect the piece
             selectedPiece= null;
             
+            document.querySelectorAll('.capture').forEach(el => el.classList.remove('capture'));
             //change turns of white/black and end game is someone is checkmated or stalemated
             changeTurn();
             
