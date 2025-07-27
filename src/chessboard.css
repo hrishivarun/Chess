@@ -36,42 +36,48 @@ button{
     margin: 20px calc(50vw - calc(150px / 2));
 }
 #sudoku {
-    box-sizing: content-box;
+    box-sizing: border-box;
     color: yellow;
-    width: 560px; 
-    height:auto;
+    width: min(90vw, 90vh); /* Use the smaller of 90% viewport width or height */
+    height: min(90vw, 90vh); /* Keep it square */
+    max-width: 560px; /* Optional: set a maximum size */
+    max-height: 560px;
     background-color: black;
-    /* padding: 1px; */
-    border: 10px double darkblue;
-    margin-left: calc(calc(100vw - 560px)/2);
-    margin-right: calc(calc(100vw - 560px)/2);
-    /* display: none; */
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-row-gap: 0cap;
+    border: min(1.8vw, 1.8vh, 10px) double darkblue; /* Responsive border */
+    margin: 2vh auto; /* Center horizontally with some top margin */
+    display: grid; /* Add this - you had it commented out */
+    grid-template-columns: repeat(8, 1fr); /* 8 equal columns */
+    grid-template-rows: repeat(8, 1fr); /* 8 equal rows */
+    gap: 0;
 }
-.odd{
-    display: inline-block;
+
+.odd, .even, .white, .black {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1; /* Keeps squares perfectly square */
+    width: 100%; /* Take full grid cell width */
+    height: 100%; /* Take full grid cell height */
+    font-size: min(4vw, 4vh, 2.5rem); /* Responsive font size for pieces */
+}
+
+.odd {
     background-color: white;
     color: darkslategray;
-    height: 70px; 
-    width: 70px;   
 }
-.even{
-    display: inline-block;
+
+.even {
     background-color: darkslategray;
     color: darkred;
-    height: 70px; 
-    width: 70px;
 }
-.white{
-    height: 70px; 
-    width: 70px;
+
+/* If you're using images for pieces, make them responsive too */
+.odd img, .even img, .white img, .black img {
+    width: 80%; /* Take 80% of the square size */
+    height: 80%;
+    object-fit: contain; /* Maintain aspect ratio */
 }
-.black{
-    height: 70px; 
-    width: 70px;
-}
+
 
 .announcement{
     display: none;
