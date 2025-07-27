@@ -1,3 +1,19 @@
+let lastMoveSquares = [];
+
+function highlightLastMove(fromSquare, toSquare) {
+// Remove previous last move highlights
+lastMoveSquares.forEach(square => {
+square.classList.remove('last-move');
+});
+// Add new last move highlights
+fromSquare.classList.add('last-move');
+toSquare.classList.add('last-move');
+
+lastMoveSquares = [fromSquare, toSquare];
+}
+
+
+
 if(play){
     //moving the selected chess piece when clicked on a potential position
     sudoku.addEventListener('click', (e) => {
@@ -89,7 +105,10 @@ if(play){
 
             //unselect the piece
             selectedPiece= null;
-
+            
+            highlightLastMove(selectedSquare, nextSquare);
+            document.querySelectorAll('.capture').forEach(el => el.classList.remove('capture'));
+            
             //change turns of white/black and end game is someone is checkmated or stalemated
             changeTurn();
             
@@ -162,6 +181,9 @@ if(play){
 
             //unselect the piece
             selectedPiece= null;
+            
+            highlightLastMove(selectedSquare, nextSquare);
+            document.querySelectorAll('.capture').forEach(el => el.classList.remove('capture'));
             
             //change turns of white/black and end game is someone is checkmated or stalemated
             changeTurn();

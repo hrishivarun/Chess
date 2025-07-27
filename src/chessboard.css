@@ -38,16 +38,16 @@ button{
 #sudoku {
     box-sizing: border-box;
     color: yellow;
-    width: min(90vw, 90vh); /* Use the smaller of 90% viewport width or height */
-    height: min(90vw, 90vh); /* Keep it square */
-    max-width: 560px; /* Optional: set a maximum size */
+    width: min(90vw, 90vh);
+    height: min(90vw, 90vh);
+    max-width: 560px;
     max-height: 560px;
     background-color: black;
-    border: min(1.8vw, 1.8vh, 10px) double darkblue; /* Responsive border */
-    margin: 2vh auto; /* Center horizontally with some top margin */
-    display: grid; /* Add this - you had it commented out */
-    grid-template-columns: repeat(8, 1fr); /* 8 equal columns */
-    grid-template-rows: repeat(8, 1fr); /* 8 equal rows */
+    border: min(1.8vw, 1.8vh, 10px) double darkblue;
+    margin: 2vh auto;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
     gap: 0;
 }
 
@@ -55,10 +55,11 @@ button{
     display: flex;
     align-items: center;
     justify-content: center;
-    aspect-ratio: 1; /* Keeps squares perfectly square */
-    width: 100%; /* Take full grid cell width */
-    height: 100%; /* Take full grid cell height */
-    font-size: min(4vw, 4vh, 2.5rem); /* Responsive font size for pieces */
+    aspect-ratio: 1;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: all 0.15s ease;
 }
 
 .odd {
@@ -71,11 +72,152 @@ button{
     color: darkred;
 }
 
-/* If you're using images for pieces, make them responsive too */
-.odd img, .even img, .white img, .black img {
-    width: 80%; /* Take 80% of the square size */
+/* Piece images responsive sizing */
+.odd img, .even img {
+    width: 80%;
     height: 80%;
-    object-fit: contain; /* Maintain aspect ratio */
+    object-fit: contain;
+    transition: transform 0.1s ease;
+    z-index: 10;
+}
+
+/* Hover effect for squares */
+.hover {
+    background-color: rgba(240, 208, 80, 0.3) !important;
+}
+
+/* LICHESS-INSPIRED VISUAL INDICATORS */
+
+/* King in check - pulsing red glow */
+.checked {
+    animation: checkPulse 1.5s infinite;
+    z-index: 5;
+}
+
+.checked::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(45deg, #ff4444, #cc0000);
+    border-radius: 12%;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+@keyframes checkPulse {
+    0%, 100% { 
+        box-shadow: 0 0 0 2px rgba(255, 68, 68, 0.8),
+                    0 0 15px rgba(255, 68, 68, 0.6);
+    }
+    50% { 
+        box-shadow: 0 0 0 4px rgba(255, 68, 68, 1),
+                    0 0 25px rgba(255, 68, 68, 0.8);
+    }
+}
+
+/* Selected piece - golden border with center dot */
+.selected {
+    box-shadow: inset 0 0 0 3px #f0d050,
+                0 0 10px rgba(240, 208, 80, 0.5);
+    border-radius: 8%;
+    z-index: 5;
+}
+
+.selected::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: #f0d050;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.8;
+    z-index: 15;
+}
+
+/* Potential moves - dots for empty squares */
+.potential-position::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 22px;
+    height: 22px;
+    background-color: rgba(130, 151, 105, 0.9);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s ease;
+    z-index: 8;
+}
+
+/* Hover effect for potential moves */
+.potential-position:hover::before {
+    background-color: rgba(130, 151, 105, 1);
+    transform: translate(-50%, -50%) scale(1.3);
+}
+
+/* For capture moves - show ring instead of solid dot */
+.potential-position.capture::before {
+    width: 75%;
+    height: 75%;
+    background-color: transparent;
+    border: 4px solid rgba(130, 151, 105, 0.9);
+    border-radius: 12%;
+}
+
+.potential-position.capture:hover::before {
+    border-color: rgba(130, 151, 105, 1);
+    border-width: 5px;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Last move highlighting */
+.last-move {
+    background-color: rgba(255, 255, 119, 0.5) !important;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 119, 0.7);
+}
+
+/* Piece dragging effect */
+.dragging {
+    transform: scale(1.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+}
+
+/* Enhanced piece hover */
+.piece-hover {
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    #sudoku {
+        width: 95vw;
+        height: 95vw;
+        border-width: 5px;
+    }
+    
+    .potential-position::before {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .selected::after {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    #sudoku {
+        width: 70vmin;
+        height: 70vmin;
+    }
 }
 
 
@@ -93,7 +235,7 @@ button{
     margin: 10px calc(calc(100vw - 571px) / 2);
 
 }
-
+/* 
 .hover{
     background-color: chocolate;
 }
@@ -105,7 +247,7 @@ button{
 }
 .potential-position{
     background-color: brown;
-}
+} */
 
 .parent{
     margin-left: calc( calc(100vw / 2) - calc(var(--width)/2));

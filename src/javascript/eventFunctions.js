@@ -40,6 +40,7 @@ function selectPiece(e){
                     piecesWhite[piece].potentialPositions.forEach(position =>{
                         position.classList.add('potential-position');
                     });
+                    addCaptureClass();
                 }
 
 
@@ -48,6 +49,7 @@ function selectPiece(e){
                     piecesWhite[piece].potentialPositions.forEach(position =>{
                         position.classList.remove('potential-position');
                     });
+                    position.classList.remove('capture');
                     selectedPiece= null;
                 }
             }
@@ -71,6 +73,7 @@ function selectPiece(e){
                     piecesBlack[piece].potentialPositions.forEach(position =>{
                         position.classList.add('potential-position');
                     });
+                    addCaptureClass();
                 }
     
     
@@ -79,9 +82,33 @@ function selectPiece(e){
                     piecesBlack[piece].potentialPositions.forEach(position =>{
                         position.classList.remove('potential-position');
                     });
+                    position.classList.remove('capture');
                     selectedPiece= null;
                 }
             }
         }
+    }
+}
+// Add this new function to eventFuncs.js
+function addCaptureClass() {
+    // Remove all existing capture classes
+    document.querySelectorAll('.capture').forEach(el => {
+        el.classList.remove('capture');
+    });
+    
+    // Add capture class to squares with enemy pieces
+    if (selectedPiece) {
+        const piece = selectedPiece.getAttribute('data-piece');
+        const colorOfPiece = selectedPiece.classList.contains('white') ? 'white' : 'black';
+        const colorOfOpposition = colorOfPiece === 'white' ? 'black' : 'white';
+        
+        const pieceData = colorOfPiece === 'white' ? piecesWhite[piece] : piecesBlack[piece];
+        
+        pieceData.potentialPositions.forEach(position => {
+            if (position.childElementCount && 
+                position.querySelector('img').classList.contains(colorOfOpposition)) {
+                position.classList.add('capture');
+            }
+        });
     }
 }
